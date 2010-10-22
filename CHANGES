@@ -1,3 +1,8 @@
+== 1.4.1 - ???
+* Refactored the gemspec. Gem building code is now handled by Rake tasks.
+* Refactored the Rakefile. Added a default task, removed the old install
+  task, and namespaced the gem related tasks.
+
 == 1.4.0 - 5-Sep-2009
 * Fixed a packaging bug where the libs weren't actually being included! Gah!
   Thanks go to Steven Hilton for the spot.

@@ -17,7 +17,7 @@ class TC_Getopt_Long < Test::Unit::TestCase
    end
 
    def test_version
-      assert_equal('1.4.0', Long::VERSION)
+      assert_equal('1.4.1', Long::VERSION)
    end
 
    def test_constants

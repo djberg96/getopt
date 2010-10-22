@@ -14,7 +14,7 @@ include Getopt
 class TC_Getopt_Std < Test::Unit::TestCase
 
    def test_version
-      assert_equal('1.4.0', Std::VERSION)
+      assert_equal('1.4.1', Std::VERSION)
    end
 
    def test_getopts_basic

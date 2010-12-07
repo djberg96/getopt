@@ -1,10 +1,8 @@
 require 'rake'
+require 'rake/clean'
 require 'rake/testtask'
 
-task :clean do
-  Dir['*.gem'].each{ |f| File.delete(f) }
-  Dir['**/*.rbc'].each{ |f| File.delete(f) }
-end
+CLEAN.include("**/*.gem", "**/*.rbc")
 
 namespace :gem do
   desc "Create the getopt gem"
@@ -15,28 +13,28 @@ namespace :gem do
 
   desc "Install the getopt gem"
   task :install => [:create] do
-    ruby 'getopt.gemspec'
     file = Dir["*.gem"].first
     sh "gem install #{file}"
   end
 end
 
 Rake::TestTask.new do |t|
-  task :test => :clean
   t.warning = true
   t.verbose = true
 end
 
-Rake::TestTask.new('test_getopt_long') do |t|
-  t.test_files = 'test/test_getopt_long.rb'
-  t.warning = true
-  t.verbose = true
-end
+namespace :test do
+  Rake::TestTask.new('getopt_long') do |t|
+    t.test_files = 'test/test_getopt_long.rb'
+    t.warning = true
+    t.verbose = true
+  end
 
-Rake::TestTask.new('test_getopt_std') do |t|
-  t.test_files = 'test/test_getopt_std.rb'
-  t.warning = true
-  t.verbose = true
+  Rake::TestTask.new('getopt_std') do |t|
+    t.test_files = 'test/test_getopt_std.rb'
+    t.warning = true
+    t.verbose = true
+  end
 end
 
 task :default => :test

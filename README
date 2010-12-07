@@ -2,9 +2,6 @@
   Implements a simple Getopt::Std class for command line parsing, as well
   as a Getopt::Long class for more advanced command line parsing.
 
-= Prerequisites
-  Ruby 1.8.0 or later.
-   
 = Installation
 
   gem install getopt

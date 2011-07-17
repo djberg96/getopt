@@ -215,7 +215,7 @@ module Getopt
          #
          # This allows users to refer to the long or short switch and get
          # the same value
-         hash.each{ |switch, val|
+         hash.dup.each{ |switch, val|
             if syns.keys.include?(switch)
                syns[switch] = [syns[switch]] if RUBY_VERSION.to_f >= 1.9
                syns[switch].each{ |key|
@@ -225,7 +225,7 @@ module Getopt
          }
 
          # Get rid of leading "--" and "-" to make it easier to reference
-         hash.each{ |key, value|
+         hash.dup.each{ |key, value|
             if key =~ /^-/
                if key[0,2] == '--'
                   nkey = key.sub('--', '')

@@ -1,4 +1,5 @@
-== 1.4.1 - ???
+== 1.4.1 - 17-Jul-2011
+* Now works with Ruby 1.9.x. Thanks go to Shura for the patch.
 * Refactored the gemspec. Gem building code is now handled by Rake tasks.
 * Refactored the Rakefile. Added a default task, removed the old install
   task, and namespaced the gem related tasks.

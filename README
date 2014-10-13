@@ -122,7 +122,7 @@ INCREMENT
   Allow shortcut characters for the option types, e.g. "?" for BOOLEAN, "+"
   for INCREMENT, etc.
 
-= Known Bugs
+= Known Issues
 
 == Getopt::Std
 
@@ -137,12 +137,12 @@ INCREMENT
   the optional switch will be set to true instead of nil if it separated
   from the compressed switches.
    
-== Reporting Bugs
+== Reporting Issues
 
-  If you find any other bugs, please log them on the project
-  page at http://www.rubyforge.org/projects/shards.
+  If you find any other issues, please log them on the project
+  page at https://github.com/djberg96/getopt.
 
-= Other Issues
+= Other Stuff
 
   Neither class attempts to be POSIX compliant in any way, shape or form.
   And I don't care!
@@ -173,8 +173,7 @@ INCREMENT
    
   If you plan to write a full fledged command line application, e.g. you plan
   on implementing a full help system, gobs of command line options and tons of
-  switches, consider Jim Freeze's 'commandline' package, available on
-  RubyForge.
+  switches, consider Jim Freeze's 'commandline' gem.
 
 = Warranty
   This package is provided "as is" and without any express or
@@ -185,7 +184,7 @@ INCREMENT
   Artistic 2.0
 
 = Copyright
-  (C) 2005-2011, Daniel J. Berger
+  (C) 2005-2014, Daniel J. Berger
   All Rights Reserved
 
 = Author

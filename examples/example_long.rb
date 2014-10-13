@@ -5,11 +5,12 @@
 # handle command line options.
 ##########################################################################
 require "getopt/long"
+include Getopt
 
 # The truly lazy way.  This creates two valid command line switches,
 # automatically creates single letter switches (-f, -b), and sets each
 # switch type to BOOLEAN.
-opts = Getopt::Long.getopts("--foo --bar")
+#opts = Getopt::Long.getopts("--foo --bar")
 
 # Here's a comprehensive example that uses all types and options.
 opts = Getopt::Long.getopts(
@@ -21,6 +22,8 @@ opts = Getopt::Long.getopts(
    ["--verbose", "-v", BOOLEAN], # --verbose, -v, BOOLEAN
    ["--my-name", "-x", REQUIRED] # --my-name, -x, REQUIRED
 )
+
+p opts
 
 # Using the above example:
 

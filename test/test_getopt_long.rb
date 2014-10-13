@@ -4,10 +4,7 @@
 # Test suite for the getopt-long package. You should run this test
 # via the 'rake test' rake task.
 #####################################################################
-require 'rubygems'
-gem 'test-unit'
-
-require 'test/unit'
+require 'test-unit'
 require 'getopt/long'
 include Getopt
 
@@ -17,7 +14,7 @@ class TC_Getopt_Long < Test::Unit::TestCase
    end
 
    def test_version
-      assert_equal('1.4.1', Long::VERSION)
+      assert_equal('1.4.2', Long::VERSION)
    end
 
    def test_constants
@@ -59,7 +56,7 @@ class TC_Getopt_Long < Test::Unit::TestCase
       assert_equal("world", @opts["bar"])
       assert_equal("world", @opts["b"])
    end
-   
+
    def test_getopts_long_embedded_hyphens
       ARGV.push('--foo-bar', 'hello', '--test1-test2-test3', 'world')
       assert_nothing_raised{
@@ -73,7 +70,7 @@ class TC_Getopt_Long < Test::Unit::TestCase
       assert_equal('world', @opts['test1-test2-test3'])
       assert_equal('world', @opts['t'])
    end
-   
+
    def test_getopts_long_embedded_hyphens_using_equals_sign
       ARGV.push('--foo-bar=hello', '--test1-test2-test3=world')
       assert_nothing_raised{
@@ -245,14 +242,14 @@ class TC_Getopt_Long < Test::Unit::TestCase
          )
       }
    end
-   
+
    def test_multiple_similar_long_switches_with_no_short_switches
       ARGV.push('--to','1','--too','2','--tooo','3')
       assert_nothing_raised{
          @opts = Long.getopts(
             ["--to",  REQUIRED],
             ["--too", REQUIRED],
-            ["--tooo", REQUIRED]            
+            ["--tooo", REQUIRED]
          )
       }
       assert_equal('1', @opts['to'])

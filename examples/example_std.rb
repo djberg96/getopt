@@ -3,14 +3,6 @@
 #
 # Some samples of how to use the Getopt::Std class.
 #####################################################
-base = File.basename(Dir.pwd)
-
-if base == "examples" || base =~ /getopt/
-   Dir.chdir("..") if base == "examples"
-   $LOAD_PATH.unshift(Dir.pwd + "/lib")
-   Dir.chdir("examples") rescue nil
-end
-
 require "getopt/std"
 include Getopt
 

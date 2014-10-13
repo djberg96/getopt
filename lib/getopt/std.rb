@@ -6,11 +6,11 @@ module Getopt
 
       # The Getopt::Std::Error class is raised if there are any illegal
       # command line arguments.
-      # 
+      #
       class Error < StandardError; end
 
       # The version of the getopt library
-      VERSION = '1.4.1'
+      VERSION = '1.4.2'
 
       # Processes single character command line options with option
       # clustering.  This information is parsed from ARGV and returned
@@ -41,11 +41,11 @@ module Getopt
       #        # Do something
       #     end
       #  end
-      # 
+      #
       def self.getopts(switches)
          args = switches.split(/ */)
          hash = {}
-         
+
          while !ARGV.empty? && ARGV.first =~ /^-(.)(.*)/s
             first, rest = $1, $2
             pos = switches.index(first)

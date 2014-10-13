@@ -17,7 +17,7 @@ module Getopt
       class Error < StandardError; end
 
       # The version of the getopt library
-      VERSION = '1.4.1'
+      VERSION = '1.4.2'
 
       # Takes an array of switches. Each array consists of up to three
       # elements that indicate the name and type of switch. Returns a hash
@@ -69,7 +69,7 @@ module Getopt
                switch[1] ||= switch[0][1..2]
             end
 
-            # Create synonym hash.  Default to first char of long switch for 
+            # Create synonym hash.  Default to first char of long switch for
             # short switch, e.g. "--verbose" creates a "-v" synonym.  The same
             # synonym can only be used once - first one wins.
             syns[switch[0]] = switch[1] unless syns[switch[1]]
@@ -77,7 +77,7 @@ module Getopt
 
             switch[1] = [switch[1]] if RUBY_VERSION.to_f >= 1.9
 
-            switch[1].each{ |char|      
+            switch[1].each{ |char|
                types[char] = switch[2]  # Set type for short switch
                valid.push(char)         # Set valid short switches
             }
@@ -95,7 +95,7 @@ module Getopt
                chars = opt.split("")[1..-1].map{ |s| s = "-#{s}" }
 
                chars.each_with_index{ |char, i|
-                  unless valid.include?(char)  
+                  unless valid.include?(char)
                      raise Error, "invalid switch '#{char}'"
                   end
 
@@ -219,7 +219,7 @@ module Getopt
             if syns.keys.include?(switch)
                syns[switch] = [syns[switch]] if RUBY_VERSION.to_f >= 1.9
                syns[switch].each{ |key|
-                  hash[key] = val   
+                  hash[key] = val
                }
             end
          }

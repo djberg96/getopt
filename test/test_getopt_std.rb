@@ -14,13 +14,13 @@ include Getopt
 class TC_Getopt_Std < Test::Unit::TestCase
 
    def test_version
-      assert_equal('1.4.1', Std::VERSION)
+      assert_equal('1.4.2', Std::VERSION)
    end
 
    def test_getopts_basic
       assert_respond_to(Std, :getopts)
       assert_nothing_raised{ Std.getopts("ID") }
-      assert_kind_of(Hash, Std.getopts("ID")) 
+      assert_kind_of(Hash, Std.getopts("ID"))
    end
 
    def test_getopts_separated_switches

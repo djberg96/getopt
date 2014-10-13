@@ -1,6 +1,6 @@
 == 1.4.2 - 12-Oct-2014
 * Updated Rakefile, README and gemspec.
-* Minor updates to the test file.
+* Minor updates to the test file and examples.
 
 == 1.4.1 - 17-Jul-2011
 * Now works with Ruby 1.9.x. Thanks go to Shura for the patch.

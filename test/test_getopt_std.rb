@@ -4,10 +4,7 @@
 # Test suite for the Getopt::Std class. You should run this test
 # via the 'rake test' task.
 ###################################################################
-require 'rubygems'
-gem 'test-unit'
-
-require 'test/unit'
+require 'test-unit'
 require 'getopt/std'
 include Getopt
 

@@ -17,7 +17,7 @@ module Getopt
       class Error < StandardError; end
 
       # The version of the getopt library
-      VERSION = '1.4.2'
+      VERSION = '1.4.3'
 
       # Takes an array of switches. Each array consists of up to three
       # elements that indicate the name and type of switch. Returns a hash

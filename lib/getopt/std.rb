@@ -10,7 +10,7 @@ module Getopt
       class Error < StandardError; end
 
       # The version of the getopt library
-      VERSION = '1.4.2'
+      VERSION = '1.4.3'
 
       # Processes single character command line options with option
       # clustering.  This information is parsed from ARGV and returned

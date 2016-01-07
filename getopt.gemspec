@@ -2,7 +2,7 @@ require 'rubygems'
 
 Gem::Specification.new do |spec|
   spec.name       = 'getopt'
-  spec.version    = '1.4.2'
+  spec.version    = '1.4.3'
   spec.author     = 'Daniel J. Berger'
   spec.license    = 'Artistic 2.0'
   spec.email      = 'djberg96@gmail.com'
@@ -10,6 +10,7 @@ Gem::Specification.new do |spec|
   spec.summary    = 'Getopt::Std and Getopt::Long option parsers for Ruby'
   spec.test_files = Dir['test/*.rb']
   spec.files      = Dir['**/*'].reject{ |f| f.include?('git') }
+  spec.cert_chain = Dir['certs/*']
 
   spec.extra_rdoc_files  = ['README', 'CHANGES', 'MANIFEST']
    

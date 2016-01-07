@@ -1,6 +1,7 @@
 == 1.4.3 - 7-Jan-2016
 * This gem is now signed.
 * The gem related tasks in the Rakefile now assume Rubygems 2.x.
+* Added getopt.rb, getopt-std.rb and getopt-long.rb files for convenience.
 
 == 1.4.2 - 12-Oct-2014
 * Updated Rakefile, README and gemspec.

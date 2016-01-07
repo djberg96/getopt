@@ -6,7 +6,10 @@
 * certs/djberg96_pub.pem
 * examples/example_std.rb
 * examples/example_long.rb
-* lib/getopt/std.rb
+* lib/getopt.rb
+* lib/getopt-long.rb
+* lib/getopt-std.rb
 * lib/getopt/long.rb
-* test/test_getopt_std.rb
+* lib/getopt/std.rb
 * test/test_getopt_long.rb
+* test/test_getopt_std.rb

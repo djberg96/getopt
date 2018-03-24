@@ -1,16 +1,16 @@
+require_relative 'version'
+
 # The Getopt module serves as a namespace only
 module Getopt
 
    # The Getopt::Std class serves as a base class for the getopts method.
    class Std
+      include Getopt::Version
 
       # The Getopt::Std::Error class is raised if there are any illegal
       # command line arguments.
       #
       class Error < StandardError; end
-
-      # The version of the getopt library
-      VERSION = '1.4.3'
 
       # Processes single character command line options with option
       # clustering.  This information is parsed from ARGV and returned

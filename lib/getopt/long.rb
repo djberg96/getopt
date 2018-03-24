@@ -1,3 +1,5 @@
+require_relative 'version'
+
 # The Getopt module serves as a namespace only
 module Getopt
 
@@ -12,12 +14,10 @@ module Getopt
 
    # The Getopt::Long class encapsulates longhanded parameter parsing options
    class Long
+      include Getopt::Version
 
       # Error raised if an illegal option or argument is passed
       class Error < StandardError; end
-
-      # The version of the getopt library
-      VERSION = '1.4.3'
 
       # Takes an array of switches. Each array consists of up to three
       # elements that indicate the name and type of switch. Returns a hash
@@ -59,7 +59,7 @@ module Getopt
             valid.push(switch[0])       # Set valid long switches
 
             # Set type for long switch, default to BOOLEAN.
-            if switch[1].kind_of?(Fixnum)
+            if switch[1].kind_of?(Integer)
                switch[2] = switch[1]
                types[switch[0]] = switch[2]
                switch[1] = switch[0][1..2]
@@ -75,7 +75,7 @@ module Getopt
             syns[switch[0]] = switch[1] unless syns[switch[1]]
             syns[switch[1]] = switch[0] unless syns[switch[1]]
 
-            switch[1] = [switch[1]] if RUBY_VERSION.to_f >= 1.9
+            switch[1] = [switch[1]]
 
             switch[1].each{ |char|
                types[char] = switch[2]  # Set type for short switch
@@ -217,7 +217,7 @@ module Getopt
          # the same value
          hash.dup.each{ |switch, val|
             if syns.keys.include?(switch)
-               syns[switch] = [syns[switch]] if RUBY_VERSION.to_f >= 1.9
+               syns[switch] = [syns[switch]]
                syns[switch].each{ |key|
                   hash[key] = val
                }

@@ -1,3 +1,9 @@
+== 1.4.4 - 24-Mar-2018
+* Fixed a deprecation warning.
+* Now requires Ruby 2.2 or later.
+* Added metadata to the gemspec.
+* Updated the cert.
+
 == 1.4.3 - 7-Jan-2016
 * This gem is now signed.
 * The gem related tasks in the Rakefile now assume Rubygems 2.x.

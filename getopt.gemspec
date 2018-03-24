@@ -2,7 +2,7 @@ require 'rubygems'
 
 Gem::Specification.new do |spec|
   spec.name       = 'getopt'
-  spec.version    = '1.4.3'
+  spec.version    = '1.4.4'
   spec.author     = 'Daniel J. Berger'
   spec.license    = 'Artistic 2.0'
   spec.email      = 'djberg96@gmail.com'
@@ -15,6 +15,16 @@ Gem::Specification.new do |spec|
   spec.extra_rdoc_files  = ['README', 'CHANGES', 'MANIFEST']
    
   spec.add_development_dependency('test-unit', '>= 2.5.0')
+  spec.required_ruby_version = '>= 2.2.0'
+
+  spec.metadata = {
+    'homepage_uri'      => 'https://github.com/djberg96/getopt',
+    'bug_tracker_uri'   => 'https://github.com/djberg96/getopt/issues',
+    'changelog_uri'     => 'https://github.com/djberg96/getopt/blob/master/CHANGES',
+    'documentation_uri' => 'https://github.com/djberg96/getopt/wiki',
+    'source_code_uri'   => 'https://github.com/djberg96/getopt',
+    'wiki_uri'          => 'https://github.com/djberg96/getopt/wiki'
+  }
 
   spec.description = <<-EOF
     The getopt library provides two different command line option parsers.

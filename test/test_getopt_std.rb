@@ -10,7 +10,7 @@ include Getopt
 
 class TC_Getopt_Std < Test::Unit::TestCase
   def test_version
-    assert_equal('1.4.4', Std::VERSION)
+    assert_equal('1.5.0', Std::VERSION)
     assert_true(Std::VERSION.frozen?)
   end
 

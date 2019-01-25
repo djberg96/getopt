@@ -1,3 +1,6 @@
+== 1.5.0 - 25-Jan-2019
+* Changed license to Apache-2.0.
+
 == 1.4.4 - 24-Mar-2018
 * Fixed a deprecation warning.
 * Now requires Ruby 2.2 or later.

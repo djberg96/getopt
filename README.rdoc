@@ -53,7 +53,7 @@ as a Getopt::Long class for more advanced command line parsing.
 
 = Class Methods
 
-Std.getopts(switches)
+  Std.getopts(switches)
 
 Takes a series of single character switches that can be accepted on the
 command line.  Those characters followed by a ':' require an argument. The
@@ -65,7 +65,7 @@ do not appear in the hash.
 In the event that a switch that accepts an argument appears multiple times
 the value for that key becomes an array of values.
 
-Long.getopts(switches)
+  Long.getopts(switches)
 
 Takes an array of switches beginning with "--" followed by one or more
 alphanumeric or hyphen characters, or "-" followed by a single character.
@@ -133,7 +133,7 @@ only once.
 
 You cannot squish switches that require arguments with the argument itself.
 For example, if you do Getopt::Std.getopts("o:ID"), it will not parse
-"-IDohello" properly. Instead, you must do "-IDo hello".  Or, you can just
+"-IDohello" properly. Instead, you must do "-IDo hello". Or, you can just
 separate the argument, e.g. "-I -D -o hello".
 
 == Getopt::Long

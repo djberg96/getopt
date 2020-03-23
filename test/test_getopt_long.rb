@@ -14,7 +14,7 @@ class TC_Getopt_Long < Test::Unit::TestCase
   end
 
   def test_version
-    assert_equal('1.5.0', Long::VERSION)
+    assert_equal('1.5.1', Long::VERSION)
     assert_true(Long::VERSION.frozen?)
   end
 

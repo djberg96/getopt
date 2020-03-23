@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.files      = Dir['**/*'].reject{ |f| f.include?('git') }
   spec.cert_chain = Dir['certs/*']
 
-  spec.extra_rdoc_files  = ['README', 'CHANGES', 'MANIFEST']
+  spec.extra_rdoc_files  = ['README.rdoc', 'CHANGES.rdoc', 'MANIFEST.rdoc']
    
   spec.add_development_dependency('test-unit', '>= 2.5.0')
   spec.required_ruby_version = '>= 2.2.0'

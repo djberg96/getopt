@@ -93,7 +93,7 @@ Long.getopts(switches)
 
 REQUIRED
   If the option is specified on the command line, it must be followed by
-  a non-blank argument.  This argument cannot be another switch. If this
+  a non-blank argument. This argument cannot be another switch. If this
   switch appears multiple times, the values are collected into an array.
 
 BOOLEAN
@@ -103,7 +103,7 @@ BOOLEAN
 
 OPTIONAL
   If the option is specified on the command line, it may or may not accept
-  an argument, excluding other valid switches.  If an argument is present,
+  an argument, excluding other valid switches. If an argument is present,
   it's value is set to that argument.  If an argument is not present, it's
   value is set to nil.
 
@@ -128,7 +128,7 @@ INCREMENT
 
   You cannot squish switches that require arguments with the argument itself.
   For example, if you do Getopt::Std.getopts("o:ID"), it will not parse
-  "-IDohello" properly.  Instead, you must do "-IDo hello".  Or, you can just
+  "-IDohello" properly. Instead, you must do "-IDo hello".  Or, you can just
   separate the argument, e.g. "-I -D -o hello".
 
 == Getopt::Long
@@ -150,20 +150,20 @@ INCREMENT
 = Notes From the Author
 
   My main gripe with the getoptlong library currently in the standard library
-  is that it doesn't return a hash, yet gives you partial hash behavior.  This
+  is that it doesn't return a hash, yet gives you partial hash behavior. This
   was both confusing and annoying, since the first thing I do (along with
   everyone else) is collect the results into a hash for later processing.
 
   My main gripe with the optparse library (also in the standard library) is
-  that it treats command line processing like event processing.  It's too
+  that it treats command line processing like event processing. It's too
   complex, when 90% of the time all you want to do is slurp the command line
   options into a hash.
 
-  So, I did something utterly novel with this library.  I collected the command
-  line options ... (wait for it) ... into a hash!  Then I give that hash to
-  you, aliases and all.  I did get some ideas from Perl's Getopt::Long library,
+  So, I did something utterly novel with this library. I collected the command
+  line options ... (wait for it) ... into a hash! Then I give that hash to
+  you, aliases and all. I did get some ideas from Perl's Getopt::Long library,
   but this is in no way a port of that module (which supports POSIX parsing, GNU
-  parsing, more option types, etc).  My goal was to provide the functionality
+  parsing, more option types, etc). My goal was to provide the functionality
   that I felt would cover the vast majority of common cases, yet still provide
   a little extra spice with switch types (REQUIRED, OPTIONAL, etc).
 
@@ -184,7 +184,7 @@ INCREMENT
   Apache-2.0
 
 = Copyright
-  (C) 2005-2019, Daniel J. Berger
+  (C) 2005-2020, Daniel J. Berger
   All Rights Reserved
 
 = Author

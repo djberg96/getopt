@@ -1,6 +1,6 @@
 ## Description
 The getopt Ruby library is a simple command line parsing library. It implements
-a Getopt::Std class for basic command line parsing, as well as a Getopt::Long
+a `Getopt::Std` class for basic command line parsing, as well as a `Getopt::Long`
 class for more advanced command line parsing.
 
 ## Installation

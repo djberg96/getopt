@@ -1,7 +1,7 @@
-* CHANGES.rdoc
+* CHANGES.md
 * LICENSE
-* MANIFEST.rdoc
-* README.rdoc
+* MANIFEST.md
+* README.md
 * Rakefile
 * getopt.gemspec
 * certs/djberg96_pub.pem

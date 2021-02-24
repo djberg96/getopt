@@ -47,9 +47,11 @@ opt = Getopt::Long.getopts(
 
 if opt["foo"]
   # Do something if --foo or -f passed
+end
 
 if opt["b"]
   # Do something if --bar or -b passed
+end
 ```
 
 ## Singleton Methods

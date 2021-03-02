@@ -2,18 +2,18 @@ require 'rubygems'
 
 Gem::Specification.new do |spec|
   spec.name       = 'getopt'
-  spec.version    = '1.5.1'
+  spec.version    = '1.6.0'
   spec.author     = 'Daniel J. Berger'
   spec.license    = 'Apache-2.0'
   spec.email      = 'djberg96@gmail.com'
   spec.homepage   = 'https://github.com/djberg96/getopt'
   spec.summary    = 'Getopt::Std and Getopt::Long option parsers for Ruby'
-  spec.test_files = Dir['test/*.rb']
+  spec.test_files = Dir['spec/*_spec.rb']
   spec.files      = Dir['**/*'].reject{ |f| f.include?('git') }
   spec.cert_chain = Dir['certs/*']
 
-  spec.add_development_dependency('test-unit', '>= 2.5.0')
-  spec.required_ruby_version = '>= 2.2.0'
+  spec.add_development_dependency('rake')
+  spec.add_development_dependency('rspec', '~> 3.9')
 
   spec.metadata = {
     'homepage_uri'      => 'https://github.com/djberg96/getopt',

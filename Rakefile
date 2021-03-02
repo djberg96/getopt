@@ -1,6 +1,6 @@
 require 'rake'
 require 'rake/clean'
-require 'rake/testtask'
+require 'rspec/core/rake_task'
 
 CLEAN.include("**/*.gem", "**/*.rbc")
 
@@ -10,7 +10,7 @@ namespace :gem do
     require 'rubygems/package'
     spec = eval(IO.read('getopt.gemspec'))
     spec.signing_key = File.join(Dir.home, '.ssh', 'gem-private_key.pem')
-    Gem::Package.build(spec, true)
+    Gem::Package.build(spec)
   end
 
   desc "Install the getopt gem"
@@ -20,23 +20,18 @@ namespace :gem do
   end
 end
 
-Rake::TestTask.new do |t|
-  t.warning = true
-  t.verbose = true
-end
-
-namespace :test do
-  Rake::TestTask.new('getopt_long') do |t|
-    t.test_files = 'test/test_getopt_long.rb'
-    t.warning = true
-    t.verbose = true
+namespace :spec do
+  RSpec::Core::RakeTask.new(:all) do |t|
+    t.pattern = FileList['spec/*_spec.rb']
   end
 
-  Rake::TestTask.new('getopt_std') do |t|
-    t.test_files = 'test/test_getopt_std.rb'
-    t.warning = true
-    t.verbose = true
+  RSpec::Core::RakeTask.new(:getopt_long) do |t|
+    t.pattern = FileList['spec/*long_spec.rb']
+  end
+
+  RSpec::Core::RakeTask.new(:getopt_std) do |t|
+    t.pattern = FileList['spec/*std_spec.rb']
   end
 end
 
-task :default => :test
+task :default => 'spec:all'

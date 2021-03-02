@@ -1,3 +1,7 @@
+## 1.6.0 - 2-Mar-2021
+* Switch from test-unit to rspec, and update the Rakefile and gemspec accordingly.
+* Added a Gemfile.
+
 ## 1.5.1 - 23-Mar-2020
 * Properly add a LICENSE file since the Apache-2.0 license requires it.
 * Added explicit .rdoc extensions to the README, CHANGES and MANIFEST files,

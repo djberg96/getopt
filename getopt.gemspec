@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.metadata = {
     'homepage_uri'      => 'https://github.com/djberg96/getopt',
     'bug_tracker_uri'   => 'https://github.com/djberg96/getopt/issues',
-    'changelog_uri'     => 'https://github.com/djberg96/getopt/blob/master/CHANGES',
+    'changelog_uri'     => 'https://github.com/djberg96/getopt/blob/main/CHANGES',
     'documentation_uri' => 'https://github.com/djberg96/getopt/wiki',
     'source_code_uri'   => 'https://github.com/djberg96/getopt',
     'wiki_uri'          => 'https://github.com/djberg96/getopt/wiki'

@@ -33,20 +33,21 @@ module Getopt
     #  end
     #
     #  if opt["D"]
-    #     # Do something if -D passed
+    #    # Do something if -D passed
     #  end
     #
     #  if opt["o"]
-    #     case opt["o"]
-    #        # Do something
-    #     end
+    #    case opt["o"]
+    #      # Do something
+    #    end
     #  end
     #
     def self.getopts(switches)
-      args = switches.split(/ */)
-      hash = {}
+      args  = switches.split(/ */)
+      hash  = {}
+      regex = /^-(\w)\s*(\w*)/s
 
-      while !ARGV.empty? && ARGV.first =~ /^-(.)(.*)/s
+      while !ARGV.empty? && regex.match(ARGV.first)
         first, rest = $1, $2
         pos = switches.index(first)
 

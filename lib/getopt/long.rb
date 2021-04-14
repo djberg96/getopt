@@ -8,36 +8,36 @@ module Getopt
   OPTIONAL  = 2 # Argument is optional if switch is provided.
   INCREMENT = 3 # Argument is incremented by 1 each time the switch appears.
 
-   # NEGATABLE = 4 # Automatically provide negative switch equivalent.
-   # INTEGER   = 5 # Argument automatically converted to integer if provided.
-   # FLOAT     = 6 # Argument automatically converted to float if provided.
+  # NEGATABLE = 4 # Automatically provide negative switch equivalent.
+  # INTEGER   = 5 # Argument automatically converted to integer if provided.
+  # FLOAT     = 6 # Argument automatically converted to float if provided.
 
-   # The Getopt::Long class encapsulates longhanded parameter parsing options
+  # The Getopt::Long class encapsulates longhanded parameter parsing options
   class Long
     include Getopt::Version
 
-     # Error raised if an illegal option or argument is passed
+    # Error raised if an illegal option or argument is passed
     class Error < StandardError; end
 
-     # Takes an array of switches. Each array consists of up to three
-     # elements that indicate the name and type of switch. Returns a hash
-     # containing each switch name, minus the '-', as a key. The value
-     # for each key depends on the type of switch and/or the value provided
-     # by the user.
-     #
-     # The long switch _must_ be provided. The short switch defaults to the
-     # first letter of the short switch. The default type is BOOLEAN.
-     #
-     # Example:
-     #
-     #  opts = Getopt::Long.getopts(
-     #     ['--debug'                   ],
-     #     ['--verbose', '-v'           ],
-     #     ['--level',   '-l', INCREMENT]
-     #  )
-     #
-     # See the README file for more information.
-     #
+    # Takes an array of switches. Each array consists of up to three
+    # elements that indicate the name and type of switch. Returns a hash
+    # containing each switch name, minus the '-', as a key. The value
+    # for each key depends on the type of switch and/or the value provided
+    # by the user.
+    #
+    # The long switch _must_ be provided. The short switch defaults to the
+    # first letter of the short switch. The default type is BOOLEAN.
+    #
+    # Example:
+    #
+    #  opts = Getopt::Long.getopts(
+    #     ['--debug'                   ],
+    #     ['--verbose', '-v'           ],
+    #     ['--level',   '-l', INCREMENT]
+    #  )
+    #
+    # See the README file for more information.
+    #
     def self.getopts(*switches)
       if switches.empty?
         raise ArgumentError, 'no switches provided'
@@ -48,17 +48,17 @@ module Getopt
       types = {} # Tracks argument types
       syns  = {} # Tracks long and short arguments, or multiple shorts
 
-       # If a string is passed, split it and convert it to an array of arrays
+      # If a string is passed, split it and convert it to an array of arrays
       if switches.first.kind_of?(String)
         switches = switches.join.split
         switches.map!{ |switch| [switch] }
       end
 
-       # Set our list of valid switches, and proper types for each switch
+      # Set our list of valid switches, and proper types for each switch
       switches.each do |switch|
         valid.push(switch[0])       # Set valid long switches
 
-         # Set type for long switch, default to BOOLEAN.
+        # Set type for long switch, default to BOOLEAN.
         if switch[1].kind_of?(Integer)
           switch[2] = switch[1]
           types[switch[0]] = switch[2]
@@ -69,9 +69,9 @@ module Getopt
           switch[1] ||= switch[0][1..2]
         end
 
-         # Create synonym hash.  Default to first char of long switch for
-         # short switch, e.g. "--verbose" creates a "-v" synonym.  The same
-         # synonym can only be used once - first one wins.
+        # Create synonym hash.  Default to first char of long switch for
+        # short switch, e.g. "--verbose" creates a "-v" synonym.  The same
+        # synonym can only be used once - first one wins.
         syns[switch[0]] = switch[1] unless syns[switch[1]]
         syns[switch[1]] = switch[0] unless syns[switch[1]]
 
@@ -90,7 +90,7 @@ module Getopt
 
       ARGV.each_with_index do |opt, index|
 
-         # Allow either -x -v or -xv style for single char args
+        # Allow either -x -v or -xv style for single char args
         if re_short_sq.match(opt)
           chars = opt.split('')[1..-1].map{ |s| "-#{s}" }
 
@@ -99,9 +99,9 @@ module Getopt
               raise Error, "invalid switch '#{char}'"
             end
 
-             # Grab the next arg if the switch takes a required arg
+            # Grab the next arg if the switch takes a required arg
             if types[char] == REQUIRED
-               # Deal with a argument squished up against switch
+              # Deal with a argument squished up against switch
               if chars[i+1]
                 arg = chars[i+1..-1].join.tr('-', '')
                 ARGV.push(char, arg)
@@ -144,32 +144,32 @@ module Getopt
           next
         end
 
-         # Make sure that all the switches are valid.  If 'switch' isn't
-         # defined at this point, it means an option was passed without
-         # a preceding switch, e.g. --option foo bar.
+        # Make sure that all the switches are valid.  If 'switch' isn't
+        # defined at this point, it means an option was passed without
+        # a preceding switch, e.g. --option foo bar.
         unless valid.include?(switch)
           switch ||= opt
           raise Error, "invalid switch '#{switch}'"
         end
 
-         # Required arguments
+        # Required arguments
         if types[switch] == REQUIRED
           nextval = ARGV[index+1]
 
-           # Make sure there's a value for mandatory arguments
+          # Make sure there's a value for mandatory arguments
           if nextval.nil?
             err = "no value provided for required argument '#{switch}'"
             raise Error, err
           end
 
-           # If there is a value, make sure it's not another switch
+          # If there is a value, make sure it's not another switch
           if valid.include?(nextval)
             err = "cannot pass switch '#{nextval}' as an argument"
             raise Error, err
           end
 
-           # If the same option appears more than once, put the values
-           # in array.
+          # If the same option appears more than once, put the values
+          # in array.
           if hash[switch]
             hash[switch] = [hash[switch], nextval].flatten
           else
@@ -178,7 +178,7 @@ module Getopt
           ARGV.delete_at(index+1)
         end
 
-         # For boolean arguments set the switch's value to true.
+        # For boolean arguments set the switch's value to true.
         if types[switch] == BOOLEAN
           if hash.key?(switch)
             raise Error, 'boolean switch already set'
@@ -186,8 +186,8 @@ module Getopt
           hash[switch] = true
         end
 
-         # For increment arguments, set the switch's value to 0, or
-         # increment it by one if it already exists.
+        # For increment arguments, set the switch's value to 0, or
+        # increment it by one if it already exists.
         if types[switch] == INCREMENT
           if hash.key?(switch)
             hash[switch] += 1
@@ -196,8 +196,8 @@ module Getopt
           end
         end
 
-         # For optional argument, there may be an argument.  If so, it
-         # cannot be another switch.  If not, it is set to true.
+        # For optional argument, there may be an argument.  If so, it
+        # cannot be another switch.  If not, it is set to true.
         if types[switch] == OPTIONAL
           nextval = ARGV[index+1]
           if valid.include?(nextval)
@@ -209,12 +209,12 @@ module Getopt
         end
       end
 
-       # Set synonymous switches to the same value, e.g. if -t is a synonym
-       # for --test, and the user passes "--test", then set "-t" to the same
-       # value that "--test" was set to.
-       #
-       # This allows users to refer to the long or short switch and get
-       # the same value
+      # Set synonymous switches to the same value, e.g. if -t is a synonym
+      # for --test, and the user passes "--test", then set "-t" to the same
+      # value that "--test" was set to.
+      #
+      # This allows users to refer to the long or short switch and get
+      # the same value
       hash.dup.each do |switch, val|
         if syns.keys.include?(switch)
           syns[switch] = [syns[switch]]
@@ -224,7 +224,7 @@ module Getopt
         end
       end
 
-       # Get rid of leading "--" and "-" to make it easier to reference
+      # Get rid of leading "--" and "-" to make it easier to reference
       hash.dup.each do |key, value|
         if key =~ /^-/
           if key[0,2] == '--'

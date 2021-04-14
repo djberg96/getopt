@@ -58,7 +58,7 @@ module Getopt
 
       # Set our list of valid switches, and proper types for each switch
       switches.each do |switch|
-        valid.push(switch[0])       # Set valid long switches
+        valid.push(switch[0]) # Set valid long switches
 
         # Set type for long switch, default to BOOLEAN.
         if switch[1].kind_of?(Integer)

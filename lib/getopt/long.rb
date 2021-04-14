@@ -180,7 +180,7 @@ module Getopt
 
             # For boolean arguments set the switch's value to true.
             if types[switch] == BOOLEAN
-               if hash.has_key?(switch)
+               if hash.key?(switch)
                   raise Error, 'boolean switch already set'
                end
                hash[switch] = true
@@ -189,7 +189,7 @@ module Getopt
             # For increment arguments, set the switch's value to 0, or
             # increment it by one if it already exists.
             if types[switch] == INCREMENT
-               if hash.has_key?(switch)
+               if hash.key?(switch)
                   hash[switch] += 1
                else
                   hash[switch] = 1

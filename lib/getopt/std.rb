@@ -78,7 +78,7 @@ module Getopt
             # For non boolean switches, arguments that appear multiple
             # times are converted to an array (or pushed onto an already
             # existant array).
-            if hash.has_key?(first)
+            if hash.key?(first)
               hash[first] = [hash[first], rest].flatten
             else
               hash[first] = rest

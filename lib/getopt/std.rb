@@ -93,7 +93,7 @@ module Getopt
             end
           end
         else
-            hash[first] = true # Boolean switch
+          hash[first] = true # Boolean switch
             if rest.empty?
               ARGV.shift
             else

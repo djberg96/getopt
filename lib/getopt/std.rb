@@ -54,7 +54,7 @@ module Getopt
         # declared in +switches+.
         raise Error, "invalid option '#{first}'" unless pos
 
-        if args[pos+1] == ":"
+        if args[pos+1] == ':'
           ARGV.shift
           if rest.empty?
             rest = ARGV.shift
@@ -71,7 +71,7 @@ module Getopt
 
             if temp_args.include?(rest) || temp_args.include?(rest[1..-1])
               err = "cannot use switch '#{rest}' as argument "
-              err << "to another switch"
+              err << 'to another switch'
               raise Error, err
             end
 
@@ -88,7 +88,7 @@ module Getopt
             # followed immediately by another switch.
             if args.include?(rest) || args.include?(rest[1..-1])
               err = "cannot use switch '#{rest}' as argument "
-              err += "to another switch"
+              err += 'to another switch'
               raise Error, err
             end
           end

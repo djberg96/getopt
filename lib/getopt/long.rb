@@ -92,7 +92,7 @@ module Getopt
 
             # Allow either -x -v or -xv style for single char args
             if re_short_sq.match(opt)
-               chars = opt.split("")[1..-1].map{ |s| "-#{s}" }
+               chars = opt.split('')[1..-1].map{ |s| "-#{s}" }
 
                chars.each_with_index{ |char, i|
                   unless valid.include?(char)
@@ -116,7 +116,7 @@ module Getopt
                      end
                   elsif types[char] == OPTIONAL
                      if chars[i+1] && !valid.include?(chars[i+1])
-                        arg = chars[i+1..-1].join.tr("-","")
+                        arg = chars[i+1..-1].join.tr('-','')
                         ARGV.push(char, arg)
                         break
                      elsif

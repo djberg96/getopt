@@ -55,7 +55,7 @@ module Getopt
       end
 
        # Set our list of valid switches, and proper types for each switch
-      switches.each{ |switch|
+      switches.each do |switch|
         valid.push(switch[0])       # Set valid long switches
 
          # Set type for long switch, default to BOOLEAN.
@@ -77,24 +77,24 @@ module Getopt
 
         switch[1] = [switch[1]]
 
-        switch[1].each{ |char|
+        switch[1].each do |char|
           types[char] = switch[2]  # Set type for short switch
           valid.push(char)         # Set valid short switches
-        }
-      }
+        end
+      end
 
       re_long     = /^(--\w+[-\w+]*)?$/
       re_short    = /^(-\w)$/
       re_long_eq  = /^(--\w+[-\w+]*)?=(.*?)$|(-\w?)=(.*?)$/
       re_short_sq = /^(-\w)(\S+?)$/
 
-      ARGV.each_with_index{ |opt, index|
+      ARGV.each_with_index do |opt, index|
 
          # Allow either -x -v or -xv style for single char args
         if re_short_sq.match(opt)
           chars = opt.split('')[1..-1].map{ |s| "-#{s}" }
 
-          chars.each_with_index{ |char, i|
+          chars.each_with_index do |char, i|
             unless valid.include?(char)
               raise Error, "invalid switch '#{char}'"
             end
@@ -130,7 +130,7 @@ module Getopt
             else
               ARGV.push(char)
             end
-          }
+          end
           next
         end
 
@@ -207,7 +207,7 @@ module Getopt
             ARGV.delete_at(index+1)
           end
         end
-      }
+      end
 
        # Set synonymous switches to the same value, e.g. if -t is a synonym
        # for --test, and the user passes "--test", then set "-t" to the same
@@ -215,17 +215,17 @@ module Getopt
        #
        # This allows users to refer to the long or short switch and get
        # the same value
-      hash.dup.each{ |switch, val|
+      hash.dup.each do |switch, val|
         if syns.keys.include?(switch)
           syns[switch] = [syns[switch]]
-          syns[switch].each{ |key|
+          syns[switch].each do |key|
             hash[key] = val
-          }
+          end
         end
-      }
+      end
 
        # Get rid of leading "--" and "-" to make it easier to reference
-      hash.dup.each{ |key, value|
+      hash.dup.each do |key, value|
         if key =~ /^-/
           if key[0,2] == '--'
             nkey = key.sub('--', '')
@@ -235,7 +235,7 @@ module Getopt
           hash.delete(key)
           hash[nkey] = value
         end
-      }
+      end
 
       hash
     end

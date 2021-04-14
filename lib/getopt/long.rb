@@ -51,7 +51,7 @@ module Getopt
          # If a string is passed, split it and convert it to an array of arrays
          if switches.first.kind_of?(String)
             switches = switches.join.split
-            switches.map!{ |switch| switch = [switch] }
+            switches.map!{ |switch| [switch] }
          end
 
          # Set our list of valid switches, and proper types for each switch
@@ -92,7 +92,7 @@ module Getopt
 
             # Allow either -x -v or -xv style for single char args
             if re_short_sq.match(opt)
-               chars = opt.split("")[1..-1].map{ |s| s = "-#{s}" }
+               chars = opt.split("")[1..-1].map{ |s| "-#{s}" }
 
                chars.each_with_index{ |char, i|
                   unless valid.include?(char)

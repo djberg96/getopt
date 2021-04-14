@@ -54,7 +54,7 @@ module Getopt
         # declared in +switches+.
         raise Error, "invalid option '#{first}'" unless pos
 
-        if args[pos+1] == ':'
+        if args[pos + 1] == ':'
           ARGV.shift
           if rest.empty?
             rest = ARGV.shift

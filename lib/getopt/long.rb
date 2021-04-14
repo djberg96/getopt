@@ -102,12 +102,12 @@ module Getopt
             # Grab the next arg if the switch takes a required arg
             if types[char] == REQUIRED
               # Deal with a argument squished up against switch
-              if chars[i+1]
-                arg = chars[i+1..-1].join.tr('-', '')
+              if chars[i + 1]
+                arg = chars[i + 1..-1].join.tr('-', '')
                 ARGV.push(char, arg)
                 break
               else
-                arg = ARGV.delete_at(index+1)
+                arg = ARGV.delete_at(index + 1)
                 if arg.nil? || valid.include?(arg) # Minor cheat here
                   err = "no value provided for required argument '#{char}'"
                   raise Error, err
@@ -115,13 +115,13 @@ module Getopt
                 ARGV.push(char, arg)
               end
             elsif types[char] == OPTIONAL
-              if chars[i+1] && !valid.include?(chars[i+1])
-                arg = chars[i+1..-1].join.tr('-', '')
+              if chars[i + 1] && !valid.include?(chars[i + 1])
+                arg = chars[i + 1..-1].join.tr('-', '')
                 ARGV.push(char, arg)
                 break
               elsif
-                 if ARGV[index+1] && !valid.include?(ARGV[index+1])
-                   arg = ARGV.delete_at(index+1)
+                 if ARGV[index + 1] && !valid.include?(ARGV[index + 1])
+                   arg = ARGV.delete_at(index + 1)
                    ARGV.push(char, arg)
                  end
               else
@@ -154,7 +154,7 @@ module Getopt
 
         # Required arguments
         if types[switch] == REQUIRED
-          nextval = ARGV[index+1]
+          nextval = ARGV[index + 1]
 
           # Make sure there's a value for mandatory arguments
           if nextval.nil?
@@ -175,7 +175,7 @@ module Getopt
           else
             hash[switch] = nextval
           end
-          ARGV.delete_at(index+1)
+          ARGV.delete_at(index + 1)
         end
 
         # For boolean arguments set the switch's value to true.
@@ -199,12 +199,12 @@ module Getopt
         # For optional argument, there may be an argument.  If so, it
         # cannot be another switch.  If not, it is set to true.
         if types[switch] == OPTIONAL
-          nextval = ARGV[index+1]
+          nextval = ARGV[index + 1]
           if valid.include?(nextval)
             hash[switch] = true
           else
             hash[switch] = nextval
-            ARGV.delete_at(index+1)
+            ARGV.delete_at(index + 1)
           end
         end
       end

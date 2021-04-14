@@ -116,7 +116,7 @@ module Getopt
               end
             elsif types[char] == OPTIONAL
               if chars[i+1] && !valid.include?(chars[i+1])
-                arg = chars[i+1..-1].join.tr('-','')
+                arg = chars[i+1..-1].join.tr('-', '')
                 ARGV.push(char, arg)
                 break
               elsif
@@ -227,7 +227,7 @@ module Getopt
       # Get rid of leading "--" and "-" to make it easier to reference
       hash.dup.each do |key, value|
         if key =~ /^-/
-          if key[0,2] == '--'
+          if key[0, 2] == '--'
             nkey = key.sub('--', '')
           else
             nkey = key.sub('-', '')

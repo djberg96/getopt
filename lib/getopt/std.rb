@@ -94,11 +94,11 @@ module Getopt
           end
         else
           hash[first] = true # Boolean switch
-            if rest.empty?
-              ARGV.shift
-            else
-              ARGV[0] = "-#{rest}"
-            end
+          if rest.empty?
+            ARGV.shift
+          else
+            ARGV[0] = "-#{rest}"
+          end
         end
       end
 

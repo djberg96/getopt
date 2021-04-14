@@ -99,8 +99,8 @@ module Getopt
             else
               ARGV[0] = "-#{rest}"
             end
-          end
         end
+      end
 
       hash
     end

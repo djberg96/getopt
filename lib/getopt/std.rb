@@ -33,20 +33,21 @@ module Getopt
     #  end
     #
     #  if opt["D"]
-    #     # Do something if -D passed
+    #    # Do something if -D passed
     #  end
     #
     #  if opt["o"]
-    #     case opt["o"]
-    #        # Do something
-    #     end
+    #    case opt["o"]
+    #      # Do something
+    #    end
     #  end
     #
     def self.getopts(switches)
-      args = switches.split(/ */)
-      hash = {}
+      args  = switches.split(/ */)
+      hash  = {}
+      regex = /^-(\w)\s*(\w*)/s
 
-      while !ARGV.empty? && ARGV.first =~ /^-(.)(.*)/s
+      while !ARGV.empty? && regex.match(ARGV.first)
         first, rest = $1, $2
         pos = switches.index(first)
 
@@ -54,7 +55,7 @@ module Getopt
         # declared in +switches+.
         raise Error, "invalid option '#{first}'" unless pos
 
-        if args[pos+1] == ":"
+        if args[pos + 1] == ':'
           ARGV.shift
           if rest.empty?
             rest = ARGV.shift
@@ -71,14 +72,14 @@ module Getopt
 
             if temp_args.include?(rest) || temp_args.include?(rest[1..-1])
               err = "cannot use switch '#{rest}' as argument "
-              err << "to another switch"
+              err << 'to another switch'
               raise Error, err
             end
 
             # For non boolean switches, arguments that appear multiple
             # times are converted to an array (or pushed onto an already
             # existant array).
-            if hash.has_key?(first)
+            if hash.key?(first)
               hash[first] = [hash[first], rest].flatten
             else
               hash[first] = rest
@@ -88,19 +89,19 @@ module Getopt
             # followed immediately by another switch.
             if args.include?(rest) || args.include?(rest[1..-1])
               err = "cannot use switch '#{rest}' as argument "
-              err += "to another switch"
+              err += 'to another switch'
               raise Error, err
             end
           end
         else
-            hash[first] = true # Boolean switch
-            if rest.empty?
-              ARGV.shift
-            else
-              ARGV[0] = "-#{rest}"
-            end
+          hash[first] = true # Boolean switch
+          if rest.empty?
+            ARGV.shift
+          else
+            ARGV[0] = "-#{rest}"
           end
         end
+      end
 
       hash
     end

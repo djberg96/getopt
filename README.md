@@ -5,6 +5,9 @@ class for more advanced command line parsing.
 
 ## Installation
 `gem install getopt`
+
+## Adding the trusted cert
+`gem cert --add <(curl -Ls https://raw.githubusercontent.com/djberg96/getopt/main/certs/djberg96_pub.pem)`
    
 ## Synopsis
 ### Getopt::Std

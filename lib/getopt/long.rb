@@ -119,11 +119,9 @@ module Getopt
                 arg = chars[i + 1..-1].join.tr('-', '')
                 ARGV.push(char, arg)
                 break
-              elsif
-                 if ARGV[index + 1] && !valid.include?(ARGV[index + 1])
-                   arg = ARGV.delete_at(index + 1)
-                   ARGV.push(char, arg)
-                 end
+              elsif ARGV[index + 1] && !valid.include?(ARGV[index + 1])
+                arg = ARGV.delete_at(index + 1)
+                ARGV.push(char, arg)
               else
                 ARGV.push(char)
               end

@@ -1,3 +1,5 @@
+[![Ruby](https://github.com/djberg96/getopt/actions/workflows/ruby.yml/badge.svg)](https://github.com/djberg96/getopt/actions/workflows/ruby.yml)
+
 ## Description
 The getopt Ruby library is a simple command line parsing library. It implements
 a `Getopt::Std` class for basic command line parsing, as well as a `Getopt::Long`

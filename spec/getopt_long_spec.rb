@@ -145,7 +145,7 @@ RSpec.describe Getopt::Long do
     expect(@opts.has_key?("f")).to be(true)
   end
 
-  example "switches with required arguments" do
+  example "switches with required arguments when present" do
     ARGV.push("--foo","1","--bar","hello")
 
     expect{
@@ -156,6 +156,17 @@ RSpec.describe Getopt::Long do
     }.not_to raise_error
 
     expect(@opts).to eq({"foo"=>"1", "bar"=>"hello", "f"=>"1", "b"=>"hello"})
+  end
+
+  example "error is raised if argument isn't provided for switch that requires it" do
+    ARGV.push("-f", "1", "-b")
+
+    expect{
+      @opts = Getopt::Long.getopts(
+        ["--foo", "-f", Getopt::REQUIRED],
+        ["--bar", "-b", Getopt::REQUIRED]
+      )
+    }.to raise_error(Getopt::Long::Error)
   end
 
   example "compressed switches work as expected" do

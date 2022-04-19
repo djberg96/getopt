@@ -12,6 +12,10 @@ RSpec.describe Getopt::Long do
     @opts = nil
   end
 
+  after do
+    @opts = nil
+    ARGV.clear
+  end
   example 'version' do
     expect(Getopt::Long::VERSION).to eq('1.6.0')
     expect(Getopt::Long::VERSION).to be_frozen
@@ -281,10 +285,5 @@ RSpec.describe Getopt::Long do
     expect(@opts['to']).to eq('1')
     expect(@opts['too']).to eq('2')
     expect(@opts['tooo']).to eq('3')
-  end
-
-  after do
-    @opts = nil
-    ARGV.clear
   end
 end

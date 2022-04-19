@@ -9,6 +9,10 @@ require 'getopt/std'
 include Getopt
 
 RSpec.describe Getopt::Std do
+  after do
+    ARGV.clear
+  end
+
   example 'version' do
     expect(Std::VERSION).to eq('1.6.0')
     expect(Std::VERSION).to be_frozen
@@ -116,9 +120,5 @@ RSpec.describe Getopt::Std do
     expect{ Std.getopts }.to raise_error(ArgumentError)
     expect{ Std.getopts(0) }.to raise_error(NoMethodError)
     expect{ Std.getopts(nil) }.to raise_error(NoMethodError)
-  end
-
-  after do
-    ARGV.clear
   end
 end

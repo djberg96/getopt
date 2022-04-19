@@ -81,6 +81,8 @@ RSpec.describe Getopt::Std do
   # EXPECTED ERRORS
 
   example 'getopts raises expected errors when passing a switch to another switch' do
+    msg = "cannot use switch '-d' as argument to another switch"
+
     ARGV.push('-d', '-d')
     expect{ Std.getopts('d:a:') }.to raise_error(Getopt::Std::Error)
 
@@ -91,7 +93,7 @@ RSpec.describe Getopt::Std do
     expect{ Std.getopts('d:a:') }.to raise_error(Getopt::Std::Error)
 
     ARGV.push('-d', '-d')
-    expect{ Std.getopts('d:a:') }.to raise_error(Getopt::Std::Error, "cannot use switch '-d' as argument to another switch")
+    expect{ Std.getopts('d:a:') }.to raise_error(Getopt::Std::Error, msg)
   end
 
   example 'getopts raises expected errors if argument is missing' do

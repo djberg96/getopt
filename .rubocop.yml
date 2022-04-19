@@ -12,9 +12,8 @@ RSpec/InstanceVariable:
 AllCops:
   NewCops: enable
   Exclude:
-    - sys-cpu.gemspec
+    - getopt.gemspec
     - Gemfile
-    - install.rb
     - examples/*.rb
     - Rakefile
 Lint/AssignmentInCondition:

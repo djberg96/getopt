@@ -116,17 +116,17 @@ RSpec.describe Getopt::Long do
   example 'switches are set as expected' do
     ARGV.push('--verbose', '--test', '--foo')
     expect{ @opts = described_class.getopts('--verbose --test --foo') }.not_to raise_error
-    expect(@opts.has_key?('verbose')).to eq(true)
-    expect(@opts.has_key?('test')).to eq(true)
-    expect(@opts.has_key?('foo')).to eq(true)
+    expect(@opts.key?('verbose')).to eq(true)
+    expect(@opts.key?('test')).to eq(true)
+    expect(@opts.key?('foo')).to eq(true)
   end
 
   example 'short switch synonyms work as expected' do
     ARGV.push('--verbose', '--test', '--foo')
     expect{ @opts = described_class.getopts('--verbose --test --foo') }.not_to raise_error
-    expect(@opts.has_key?('v')).to eq(true)
-    expect(@opts.has_key?('t')).to eq(true)
-    expect(@opts.has_key?('f')).to eq(true)
+    expect(@opts.key?('v')).to eq(true)
+    expect(@opts.key?('t')).to eq(true)
+    expect(@opts.key?('f')).to eq(true)
   end
 
   example 'short_switch_synonyms_with_explicit_types' do
@@ -140,9 +140,9 @@ RSpec.describe Getopt::Long do
       )
     }.not_to raise_error
 
-    expect(@opts.has_key?('v')).to be(true)
-    expect(@opts.has_key?('t')).to be(true)
-    expect(@opts.has_key?('f')).to be(true)
+    expect(@opts.key?('v')).to be(true)
+    expect(@opts.key?('t')).to be(true)
+    expect(@opts.key?('f')).to be(true)
   end
 
   example 'switches with required arguments when present' do

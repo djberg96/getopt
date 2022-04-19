@@ -25,13 +25,13 @@ RSpec.describe Getopt::Long do
   end
 
   example 'getopts long basic functionality' do
-    expect(Getopt::Long).to respond_to(:getopts)
+    expect(described_class).to respond_to(:getopts)
 
-    expect{ Getopt::Long.getopts(['--test'], ['--help'], ['--foo']) }.not_to raise_error
-    expect{ Getopt::Long.getopts(['--test', '-x'], ['--help', '-y'], ['--foo', '-z']) }.not_to raise_error
+    expect{ described_class.getopts(['--test'], ['--help'], ['--foo']) }.not_to raise_error
+    expect{ described_class.getopts(['--test', '-x'], ['--help', '-y'], ['--foo', '-z']) }.not_to raise_error
 
     expect{
-      Getopt::Long.getopts(
+      described_class.getopts(
         ['--test', '-x', Getopt::BOOLEAN],
         ['--help', '-y', Getopt::REQUIRED],
         ['--foo',  '-z', Getopt::OPTIONAL],
@@ -39,14 +39,14 @@ RSpec.describe Getopt::Long do
       )
     }.not_to raise_error
 
-    expect(Getopt::Long.getopts('--test')).to be_kind_of(Hash)
+    expect(described_class.getopts('--test')).to be_kind_of(Hash)
   end
 
   example 'getopts long using equals sign works as expected' do
     ARGV.push('--foo=hello', '-b', 'world')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--foo', '-f', Getopt::REQUIRED],
         ['--bar', '-b', Getopt::OPTIONAL]
       )
@@ -62,7 +62,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('--foo-bar', 'hello', '--test1-test2-test3', 'world')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--foo-bar', '-f', Getopt::REQUIRED],
         ['--test1-test2-test3', '-t', Getopt::REQUIRED]
       )
@@ -78,7 +78,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('--foo-bar=hello', '--test1-test2-test3=world')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--foo-bar', '-f', Getopt::REQUIRED],
         ['--test1-test2-test3', '-t', Getopt::REQUIRED]
       )
@@ -94,7 +94,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('-f', 'hello', '-bworld')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--foo', '-f', Getopt::REQUIRED],
         ['--bar', '-b', Getopt::OPTIONAL]
       )
@@ -107,7 +107,7 @@ RSpec.describe Getopt::Long do
   example 'getopts long increment type works as expected' do
     ARGV.push('-m', '-m')
 
-    expect{ @opts = Getopt::Long.getopts(['--more', '-m', Getopt::INCREMENT]) }.not_to raise_error
+    expect{ @opts = described_class.getopts(['--more', '-m', Getopt::INCREMENT]) }.not_to raise_error
 
     expect(@opts['more']).to eq(2)
     expect(@opts['m']).to eq(2)
@@ -115,7 +115,7 @@ RSpec.describe Getopt::Long do
 
   example 'switches are set as expected' do
     ARGV.push('--verbose', '--test', '--foo')
-    expect{ @opts = Getopt::Long.getopts('--verbose --test --foo') }.not_to raise_error
+    expect{ @opts = described_class.getopts('--verbose --test --foo') }.not_to raise_error
     expect(@opts.has_key?('verbose')).to eq(true)
     expect(@opts.has_key?('test')).to eq(true)
     expect(@opts.has_key?('foo')).to eq(true)
@@ -123,7 +123,7 @@ RSpec.describe Getopt::Long do
 
   example 'short switch synonyms work as expected' do
     ARGV.push('--verbose', '--test', '--foo')
-    expect{ @opts = Getopt::Long.getopts('--verbose --test --foo') }.not_to raise_error
+    expect{ @opts = described_class.getopts('--verbose --test --foo') }.not_to raise_error
     expect(@opts.has_key?('v')).to eq(true)
     expect(@opts.has_key?('t')).to eq(true)
     expect(@opts.has_key?('f')).to eq(true)
@@ -133,7 +133,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('--verbose', '--test', 'hello', '--foo')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--verbose', Getopt::BOOLEAN],
         ['--test', Getopt::REQUIRED],
         ['--foo', Getopt::BOOLEAN]
@@ -149,7 +149,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('--foo', '1', '--bar', 'hello')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--foo', '-f', Getopt::REQUIRED],
         ['--bar', '-b', Getopt::REQUIRED]
       )
@@ -162,7 +162,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('-f', '1', '-b')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--foo', '-f', Getopt::REQUIRED],
         ['--bar', '-b', Getopt::REQUIRED]
       )
@@ -173,7 +173,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('-fb')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--foo', '-f', Getopt::BOOLEAN],
         ['--bar', '-b', Getopt::BOOLEAN]
       )
@@ -186,7 +186,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('-xf', 'foo.txt')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--expand', '-x', Getopt::BOOLEAN],
         ['--file', '-f', Getopt::REQUIRED]
       )
@@ -199,7 +199,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('-xffoo.txt')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--expand', '-x', Getopt::BOOLEAN],
         ['--file', '-f', Getopt::REQUIRED]
       )
@@ -212,7 +212,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('-xf')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--expand', '-x', Getopt::BOOLEAN],
         ['--file', '-f', Getopt::OPTIONAL]
       )
@@ -225,7 +225,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('-xf', 'boo.txt')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--expand', '-x', Getopt::BOOLEAN],
         ['--file', '-f', Getopt::OPTIONAL]
       )
@@ -238,7 +238,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('-xfboo.txt')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--expand', '-x', Getopt::BOOLEAN],
         ['--file', '-f', Getopt::OPTIONAL]
       )
@@ -251,7 +251,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('-xb', '--file', 'boo.txt', '-v')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--expand', '-x', Getopt::BOOLEAN],
         ['--verbose', '-v', Getopt::BOOLEAN],
         ['--file', '-f', Getopt::REQUIRED],
@@ -271,7 +271,7 @@ RSpec.describe Getopt::Long do
     ARGV.push('--to', '1', '--too', '2', '--tooo', '3')
 
     expect{
-      @opts = Getopt::Long.getopts(
+      @opts = described_class.getopts(
         ['--to',  Getopt::REQUIRED],
         ['--too', Getopt::REQUIRED],
         ['--tooo', Getopt::REQUIRED]

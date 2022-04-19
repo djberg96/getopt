@@ -155,7 +155,7 @@ RSpec.describe Getopt::Long do
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({'foo'=>'1', 'bar'=>'hello', 'f'=>'1', 'b'=>'hello'})
+    expect(@opts).to eq({'foo' => '1', 'bar' => 'hello', 'f' => '1', 'b' => 'hello'})
   end
 
   example "error is raised if argument isn't provided for switch that requires it" do
@@ -179,7 +179,7 @@ RSpec.describe Getopt::Long do
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({'foo'=>true, 'f'=>true, 'b'=>true, 'bar'=>true})
+    expect(@opts).to eq({'foo' => true, 'f' => true, 'b' => true, 'bar' => true})
   end
 
   example 'compress switches with required argument works as expected' do
@@ -192,7 +192,7 @@ RSpec.describe Getopt::Long do
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({'x'=>true, 'expand'=>true, 'f'=>'foo.txt', 'file'=>'foo.txt'})
+    expect(@opts).to eq({'x' => true, 'expand' => true, 'f' => 'foo.txt', 'file' => 'foo.txt'})
   end
 
   example 'compress switches with argument that is compressed works as expected' do
@@ -205,7 +205,7 @@ RSpec.describe Getopt::Long do
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({'x'=>true, 'expand'=>true, 'f'=>'foo.txt', 'file'=>'foo.txt'})
+    expect(@opts).to eq({'x' => true, 'expand' => true, 'f' => 'foo.txt', 'file' => 'foo.txt'})
   end
 
   example 'compress switches with optional argument not defined works as expected' do
@@ -218,7 +218,7 @@ RSpec.describe Getopt::Long do
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({'x'=>true, 'expand'=>true, 'f'=>nil, 'file'=>nil})
+    expect(@opts).to eq({'x' => true, 'expand' => true, 'f' => nil, 'file' => nil})
   end
 
   example 'compress switches with optional argument works as expected' do
@@ -231,7 +231,7 @@ RSpec.describe Getopt::Long do
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({'x'=>true, 'expand'=>true, 'f'=>'boo.txt', 'file'=>'boo.txt'})
+    expect(@opts).to eq({'x' => true, 'expand' => true, 'f' => 'boo.txt', 'file' => 'boo.txt'})
   end
 
   example 'compress switches with compressed optional argument works as expected' do
@@ -244,7 +244,7 @@ RSpec.describe Getopt::Long do
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({'x'=>true, 'expand'=>true, 'f'=>'boo.txt', 'file'=>'boo.txt'})
+    expect(@opts).to eq({'x' => true, 'expand' => true, 'f' => 'boo.txt', 'file' => 'boo.txt'})
   end
 
   example 'compressed_short_and_long_mixed' do
@@ -260,10 +260,10 @@ RSpec.describe Getopt::Long do
     }.not_to raise_error
 
     expect(@opts).to eq({
-      'x'=>true, 'expand'=>true,
-      'v'=>true, 'verbose'=>true,
-      'f'=>'boo.txt', 'file'=>'boo.txt',
-      'b'=>nil, 'bar'=>nil
+      'x' => true, 'expand' => true,
+      'v' => true, 'verbose' => true,
+      'f' => 'boo.txt', 'file' => 'boo.txt',
+      'b' => nil, 'bar' => nil
     })
   end
 

@@ -22,7 +22,7 @@ RSpec.describe Getopt::Std do
 
   example 'getopts with separated switches' do
     ARGV.push('-I', '-D')
-    expect(Std.getopts('ID')).to eq({'I'=>true, 'D'=>true})
+    expect(Std.getopts('ID')).to eq({'I' => true, 'D' => true})
   end
 
   # Inspired by RF bug #23477
@@ -51,17 +51,17 @@ RSpec.describe Getopt::Std do
 
   example 'getopts with joined switches' do
     ARGV.push('-ID')
-    expect(Std.getopts('ID')).to eq({'I'=>true, 'D'=>true})
+    expect(Std.getopts('ID')).to eq({'I' => true, 'D' => true})
   end
 
   example 'getopts with separated switches and mandatory argument' do
     ARGV.push('-o', 'hello', '-I', '-D')
-    expect(Std.getopts('o:ID')).to eq({'o'=>'hello', 'I'=>true, 'D'=>true})
+    expect(Std.getopts('o:ID')).to eq({'o' => 'hello', 'I' => true, 'D' => true})
   end
 
   example 'getopts with joined switches and mandatory argument' do
     ARGV.push('-IDo', 'hello')
-    expect( Std.getopts('o:ID')).to eq({'o'=>'hello', 'I'=>true, 'D'=>true})
+    expect( Std.getopts('o:ID')).to eq({'o' => 'hello', 'I' => true, 'D' => true})
   end
 
   example 'getopts with no arguments' do
@@ -75,7 +75,7 @@ RSpec.describe Getopt::Std do
   # are rolled into an array.
   example 'getopts with switch repeated' do
     ARGV.push('-I', '-I', '-o', 'hello', '-o', 'world')
-    expect( Std.getopts('o:ID')).to eq({'o' => ['hello','world'], 'I'=>true})
+    expect( Std.getopts('o:ID')).to eq({'o' => ['hello','world'], 'I' => true})
   end
 
   # EXPECTED ERRORS

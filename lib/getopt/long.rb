@@ -132,9 +132,8 @@ module Getopt
           next
         end
 
-        if match = re_long.match(opt) || match = re_short.match(opt)
-          switch = match.captures.first
-        end
+        match = re_long.match(opt) || re_short.match(opt)
+        switch = match.captures.first if match
 
         if match = re_long_eq.match(opt)
           switch, value = match.captures.compact

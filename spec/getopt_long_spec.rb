@@ -12,53 +12,53 @@ RSpec.describe Getopt::Long do
     @opts = nil
   end
 
-  example "version" do
+  example 'version' do
     expect(Getopt::Long::VERSION).to eq('1.6.0')
     expect(Getopt::Long::VERSION).to be_frozen
   end
 
-  example "constants" do
+  example 'constants' do
     expect(Getopt::BOOLEAN).not_to be_nil
     expect(Getopt::OPTIONAL).not_to be_nil
     expect(Getopt::REQUIRED).not_to be_nil
     expect(Getopt::INCREMENT).not_to be_nil
   end
 
-  example "getopts long basic functionality" do
+  example 'getopts long basic functionality' do
     expect(Getopt::Long).to respond_to(:getopts)
 
-    expect{ Getopt::Long.getopts(["--test"],["--help"],["--foo"]) }.not_to raise_error
-    expect{ Getopt::Long.getopts(["--test", "-x"],["--help", "-y"],["--foo", "-z"]) }.not_to raise_error
+    expect{ Getopt::Long.getopts(['--test'],['--help'],['--foo']) }.not_to raise_error
+    expect{ Getopt::Long.getopts(['--test', '-x'],['--help', '-y'],['--foo', '-z']) }.not_to raise_error
 
     expect{
       Getopt::Long.getopts(
-        ["--test", "-x", Getopt::BOOLEAN],
-        ["--help", "-y", Getopt::REQUIRED],
-        ["--foo",  "-z", Getopt::OPTIONAL],
-        ["--more", "-m", Getopt::INCREMENT]
+        ['--test', '-x', Getopt::BOOLEAN],
+        ['--help', '-y', Getopt::REQUIRED],
+        ['--foo',  '-z', Getopt::OPTIONAL],
+        ['--more', '-m', Getopt::INCREMENT]
       )
     }.not_to raise_error
 
-    expect(Getopt::Long.getopts("--test")).to be_kind_of(Hash)
+    expect(Getopt::Long.getopts('--test')).to be_kind_of(Hash)
   end
 
-  example "getopts long using equals sign works as expected" do
-    ARGV.push("--foo=hello","-b","world")
+  example 'getopts long using equals sign works as expected' do
+    ARGV.push('--foo=hello','-b','world')
 
     expect{
       @opts = Getopt::Long.getopts(
-        ["--foo", "-f", Getopt::REQUIRED],
-        ["--bar", "-b", Getopt::OPTIONAL]
+        ['--foo', '-f', Getopt::REQUIRED],
+        ['--bar', '-b', Getopt::OPTIONAL]
       )
     }.not_to raise_error
 
-    expect(@opts["foo"]).to eq("hello")
-    expect(@opts["f"]).to eq("hello")
-    expect(@opts["bar"]).to eq("world")
-    expect(@opts["b"]).to eq("world")
+    expect(@opts['foo']).to eq('hello')
+    expect(@opts['f']).to eq('hello')
+    expect(@opts['bar']).to eq('world')
+    expect(@opts['b']).to eq('world')
   end
 
-  example "getopts long with embedded hyphens works as expected" do
+  example 'getopts long with embedded hyphens works as expected' do
     ARGV.push('--foo-bar', 'hello', '--test1-test2-test3', 'world')
 
     expect{
@@ -74,7 +74,7 @@ RSpec.describe Getopt::Long do
     expect(@opts['t']).to eq('world')
   end
 
-  example "getopts long embedded hyphens using equals sign works as expected" do
+  example 'getopts long embedded hyphens using equals sign works as expected' do
     ARGV.push('--foo-bar=hello', '--test1-test2-test3=world')
 
     expect{
@@ -90,191 +90,191 @@ RSpec.describe Getopt::Long do
     expect(@opts['t']).to eq('world')
   end
 
-  example "getopts long with short switch squished works as expected" do
-    ARGV.push("-f", "hello", "-bworld")
+  example 'getopts long with short switch squished works as expected' do
+    ARGV.push('-f', 'hello', '-bworld')
 
     expect{
       @opts = Getopt::Long.getopts(
-        ["--foo", "-f", Getopt::REQUIRED],
-        ["--bar", "-b", Getopt::OPTIONAL]
+        ['--foo', '-f', Getopt::REQUIRED],
+        ['--bar', '-b', Getopt::OPTIONAL]
       )
     }.not_to raise_error
 
-    expect(@opts["f"]).to eq("hello")
-    expect(@opts["b"]).to eq("world")
+    expect(@opts['f']).to eq('hello')
+    expect(@opts['b']).to eq('world')
   end
 
-  example "getopts long increment type works as expected" do
-    ARGV.push("-m","-m")
+  example 'getopts long increment type works as expected' do
+    ARGV.push('-m','-m')
 
-    expect{ @opts = Getopt::Long.getopts(["--more", "-m", Getopt::INCREMENT]) }.not_to raise_error
+    expect{ @opts = Getopt::Long.getopts(['--more', '-m', Getopt::INCREMENT]) }.not_to raise_error
 
-    expect(@opts["more"]).to eq(2)
-    expect(@opts["m"]).to eq(2)
+    expect(@opts['more']).to eq(2)
+    expect(@opts['m']).to eq(2)
   end
 
-  example "switches are set as expected" do
-    ARGV.push("--verbose","--test","--foo")
-    expect{ @opts = Getopt::Long.getopts("--verbose --test --foo") }.not_to raise_error
-    expect( @opts.has_key?("verbose")).to eq(true)
-    expect( @opts.has_key?("test")).to eq(true)
-    expect( @opts.has_key?("foo")).to eq(true)
+  example 'switches are set as expected' do
+    ARGV.push('--verbose','--test','--foo')
+    expect{ @opts = Getopt::Long.getopts('--verbose --test --foo') }.not_to raise_error
+    expect( @opts.has_key?('verbose')).to eq(true)
+    expect( @opts.has_key?('test')).to eq(true)
+    expect( @opts.has_key?('foo')).to eq(true)
   end
 
-  example "short switch synonyms work as expected" do
-    ARGV.push("--verbose","--test","--foo")
-    expect{ @opts = Getopt::Long.getopts("--verbose --test --foo") }.not_to raise_error
-    expect(@opts.has_key?("v")).to eq(true)
-    expect(@opts.has_key?("t")).to eq(true)
-    expect(@opts.has_key?("f")).to eq(true)
+  example 'short switch synonyms work as expected' do
+    ARGV.push('--verbose','--test','--foo')
+    expect{ @opts = Getopt::Long.getopts('--verbose --test --foo') }.not_to raise_error
+    expect(@opts.has_key?('v')).to eq(true)
+    expect(@opts.has_key?('t')).to eq(true)
+    expect(@opts.has_key?('f')).to eq(true)
   end
 
-  example "short_switch_synonyms_with_explicit_types" do
-    ARGV.push("--verbose", "--test", "hello", "--foo")
+  example 'short_switch_synonyms_with_explicit_types' do
+    ARGV.push('--verbose', '--test', 'hello', '--foo')
 
     expect{
       @opts = Getopt::Long.getopts(
-        ["--verbose", Getopt::BOOLEAN],
-        ["--test", Getopt::REQUIRED],
-        ["--foo", Getopt::BOOLEAN]
+        ['--verbose', Getopt::BOOLEAN],
+        ['--test', Getopt::REQUIRED],
+        ['--foo', Getopt::BOOLEAN]
       )
     }.not_to raise_error
 
-    expect(@opts.has_key?("v")).to be(true)
-    expect(@opts.has_key?("t")).to be(true)
-    expect(@opts.has_key?("f")).to be(true)
+    expect(@opts.has_key?('v')).to be(true)
+    expect(@opts.has_key?('t')).to be(true)
+    expect(@opts.has_key?('f')).to be(true)
   end
 
-  example "switches with required arguments when present" do
-    ARGV.push("--foo","1","--bar","hello")
+  example 'switches with required arguments when present' do
+    ARGV.push('--foo','1','--bar','hello')
 
     expect{
       @opts = Getopt::Long.getopts(
-        ["--foo", "-f", Getopt::REQUIRED],
-        ["--bar", "-b", Getopt::REQUIRED]
+        ['--foo', '-f', Getopt::REQUIRED],
+        ['--bar', '-b', Getopt::REQUIRED]
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({"foo"=>"1", "bar"=>"hello", "f"=>"1", "b"=>"hello"})
+    expect(@opts).to eq({'foo'=>'1', 'bar'=>'hello', 'f'=>'1', 'b'=>'hello'})
   end
 
   example "error is raised if argument isn't provided for switch that requires it" do
-    ARGV.push("-f", "1", "-b")
+    ARGV.push('-f', '1', '-b')
 
     expect{
       @opts = Getopt::Long.getopts(
-        ["--foo", "-f", Getopt::REQUIRED],
-        ["--bar", "-b", Getopt::REQUIRED]
+        ['--foo', '-f', Getopt::REQUIRED],
+        ['--bar', '-b', Getopt::REQUIRED]
       )
     }.to raise_error(Getopt::Long::Error)
   end
 
-  example "compressed switches work as expected" do
-    ARGV.push("-fb")
+  example 'compressed switches work as expected' do
+    ARGV.push('-fb')
 
     expect{
       @opts = Getopt::Long.getopts(
-        ["--foo", "-f", Getopt::BOOLEAN],
-        ["--bar", "-b", Getopt::BOOLEAN]
+        ['--foo', '-f', Getopt::BOOLEAN],
+        ['--bar', '-b', Getopt::BOOLEAN]
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({"foo"=>true, "f"=>true, "b"=>true, "bar"=>true})
+    expect(@opts).to eq({'foo'=>true, 'f'=>true, 'b'=>true, 'bar'=>true})
   end
 
-  example "compress switches with required argument works as expected" do
-    ARGV.push("-xf", "foo.txt")
+  example 'compress switches with required argument works as expected' do
+    ARGV.push('-xf', 'foo.txt')
 
     expect{
       @opts = Getopt::Long.getopts(
-        ["--expand", "-x", Getopt::BOOLEAN],
-        ["--file", "-f", Getopt::REQUIRED]
+        ['--expand', '-x', Getopt::BOOLEAN],
+        ['--file', '-f', Getopt::REQUIRED]
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({"x"=>true, "expand"=>true, "f"=>"foo.txt", "file"=>"foo.txt"})
+    expect(@opts).to eq({'x'=>true, 'expand'=>true, 'f'=>'foo.txt', 'file'=>'foo.txt'})
   end
 
-  example "compress switches with argument that is compressed works as expected" do
-    ARGV.push("-xffoo.txt")
+  example 'compress switches with argument that is compressed works as expected' do
+    ARGV.push('-xffoo.txt')
 
     expect{
       @opts = Getopt::Long.getopts(
-        ["--expand", "-x", Getopt::BOOLEAN],
-        ["--file", "-f", Getopt::REQUIRED]
+        ['--expand', '-x', Getopt::BOOLEAN],
+        ['--file', '-f', Getopt::REQUIRED]
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({"x"=>true, "expand"=>true, "f"=>"foo.txt", "file"=>"foo.txt"})
+    expect(@opts).to eq({'x'=>true, 'expand'=>true, 'f'=>'foo.txt', 'file'=>'foo.txt'})
   end
 
-  example "compress switches with optional argument not defined works as expected" do
-    ARGV.push("-xf")
+  example 'compress switches with optional argument not defined works as expected' do
+    ARGV.push('-xf')
 
     expect{
       @opts = Getopt::Long.getopts(
-        ["--expand", "-x", Getopt::BOOLEAN],
-        ["--file", "-f", Getopt::OPTIONAL]
+        ['--expand', '-x', Getopt::BOOLEAN],
+        ['--file', '-f', Getopt::OPTIONAL]
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({"x"=>true, "expand"=>true, "f"=>nil, "file"=>nil})
+    expect(@opts).to eq({'x'=>true, 'expand'=>true, 'f'=>nil, 'file'=>nil})
   end
 
-  example "compress switches with optional argument works as expected" do
-    ARGV.push("-xf", "boo.txt")
+  example 'compress switches with optional argument works as expected' do
+    ARGV.push('-xf', 'boo.txt')
 
     expect{
       @opts = Getopt::Long.getopts(
-        ["--expand", "-x", Getopt::BOOLEAN],
-        ["--file", "-f", Getopt::OPTIONAL]
+        ['--expand', '-x', Getopt::BOOLEAN],
+        ['--file', '-f', Getopt::OPTIONAL]
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({"x"=>true, "expand"=>true, "f"=>"boo.txt", "file"=>"boo.txt"})
+    expect(@opts).to eq({'x'=>true, 'expand'=>true, 'f'=>'boo.txt', 'file'=>'boo.txt'})
   end
 
-  example "compress switches with compressed optional argument works as expected" do
-    ARGV.push("-xfboo.txt")
+  example 'compress switches with compressed optional argument works as expected' do
+    ARGV.push('-xfboo.txt')
 
     expect{
       @opts = Getopt::Long.getopts(
-        ["--expand", "-x", Getopt::BOOLEAN],
-        ["--file", "-f", Getopt::OPTIONAL]
+        ['--expand', '-x', Getopt::BOOLEAN],
+        ['--file', '-f', Getopt::OPTIONAL]
       )
     }.not_to raise_error
 
-    expect(@opts).to eq({"x"=>true, "expand"=>true, "f"=>"boo.txt", "file"=>"boo.txt"})
+    expect(@opts).to eq({'x'=>true, 'expand'=>true, 'f'=>'boo.txt', 'file'=>'boo.txt'})
   end
 
-  example "compressed_short_and_long_mixed" do
-    ARGV.push("-xb", "--file", "boo.txt", "-v")
+  example 'compressed_short_and_long_mixed' do
+    ARGV.push('-xb', '--file', 'boo.txt', '-v')
 
     expect{
       @opts = Getopt::Long.getopts(
-        ["--expand", "-x", Getopt::BOOLEAN],
-        ["--verbose", "-v", Getopt::BOOLEAN],
-        ["--file", "-f", Getopt::REQUIRED],
-        ["--bar", "-b", Getopt::OPTIONAL]
+        ['--expand', '-x', Getopt::BOOLEAN],
+        ['--verbose', '-v', Getopt::BOOLEAN],
+        ['--file', '-f', Getopt::REQUIRED],
+        ['--bar', '-b', Getopt::OPTIONAL]
       )
     }.not_to raise_error
 
     expect(@opts).to eq({
-      "x"=>true, "expand"=>true,
-      "v"=>true, "verbose"=>true,
-      "f"=>"boo.txt", "file"=>"boo.txt",
-      "b"=>nil, "bar"=>nil
+      'x'=>true, 'expand'=>true,
+      'v'=>true, 'verbose'=>true,
+      'f'=>'boo.txt', 'file'=>'boo.txt',
+      'b'=>nil, 'bar'=>nil
     })
   end
 
-  example "multiple similar long switches with no short switches works as expected" do
+  example 'multiple similar long switches with no short switches works as expected' do
     ARGV.push('--to','1','--too','2','--tooo','3')
 
     expect{
       @opts = Getopt::Long.getopts(
-        ["--to",  Getopt::REQUIRED],
-        ["--too", Getopt::REQUIRED],
-        ["--tooo", Getopt::REQUIRED]
+        ['--to',  Getopt::REQUIRED],
+        ['--too', Getopt::REQUIRED],
+        ['--tooo', Getopt::REQUIRED]
       )
     }.not_to raise_error
 

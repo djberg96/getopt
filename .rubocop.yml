@@ -21,6 +21,9 @@ Lint/AssignmentInCondition:
 Lint/EmptyBlock:
   Exclude:
     - spec/*.rb
+Style/BlockDelimiters: 
+  Exclude:
+    - spec/*.rb
 Style/MethodCallWithoutArgsParentheses:
   Enabled: false
 Style/NumericPredicate:

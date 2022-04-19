@@ -38,6 +38,8 @@ Style/RedundantBegin:
   Enabled: false   
 Style/SafeNavigation:
   Enabled: false
+Style/WordArray:
+  MinSize: 3
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 Layout/SpaceInsideHashLiteralBraces:

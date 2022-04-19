@@ -8,6 +8,8 @@ RSpec/FilePath:
   SpecSuffixOnly: true
 RSpec/InstanceVariable:
   Enabled: false
+RSpec/ExampleLength:
+  Max: 15
 
 AllCops:
   NewCops: enable
@@ -64,3 +66,7 @@ Metrics/PerceivedComplexity:
   Enabled: false
 Naming/RescuedExceptionsVariableName:
   PreferredName: 'err'
+Naming/FileName:
+  Exclude:
+    - 'lib/getopt-long.rb'
+    - 'lib/getopt-std.rb'

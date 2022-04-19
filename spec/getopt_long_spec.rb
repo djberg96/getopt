@@ -116,9 +116,9 @@ RSpec.describe Getopt::Long do
   example 'switches are set as expected' do
     ARGV.push('--verbose','--test','--foo')
     expect{ @opts = Getopt::Long.getopts('--verbose --test --foo') }.not_to raise_error
-    expect( @opts.has_key?('verbose')).to eq(true)
-    expect( @opts.has_key?('test')).to eq(true)
-    expect( @opts.has_key?('foo')).to eq(true)
+    expect(@opts.has_key?('verbose')).to eq(true)
+    expect(@opts.has_key?('test')).to eq(true)
+    expect(@opts.has_key?('foo')).to eq(true)
   end
 
   example 'short switch synonyms work as expected' do

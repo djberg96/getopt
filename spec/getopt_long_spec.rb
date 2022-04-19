@@ -27,8 +27,8 @@ RSpec.describe Getopt::Long do
   example 'getopts long basic functionality' do
     expect(Getopt::Long).to respond_to(:getopts)
 
-    expect{ Getopt::Long.getopts(['--test'],['--help'],['--foo']) }.not_to raise_error
-    expect{ Getopt::Long.getopts(['--test', '-x'],['--help', '-y'],['--foo', '-z']) }.not_to raise_error
+    expect{ Getopt::Long.getopts(['--test'], ['--help'], ['--foo']) }.not_to raise_error
+    expect{ Getopt::Long.getopts(['--test', '-x'], ['--help', '-y'], ['--foo', '-z']) }.not_to raise_error
 
     expect{
       Getopt::Long.getopts(
@@ -43,7 +43,7 @@ RSpec.describe Getopt::Long do
   end
 
   example 'getopts long using equals sign works as expected' do
-    ARGV.push('--foo=hello','-b','world')
+    ARGV.push('--foo=hello', '-b', 'world')
 
     expect{
       @opts = Getopt::Long.getopts(
@@ -105,7 +105,7 @@ RSpec.describe Getopt::Long do
   end
 
   example 'getopts long increment type works as expected' do
-    ARGV.push('-m','-m')
+    ARGV.push('-m', '-m')
 
     expect{ @opts = Getopt::Long.getopts(['--more', '-m', Getopt::INCREMENT]) }.not_to raise_error
 
@@ -114,7 +114,7 @@ RSpec.describe Getopt::Long do
   end
 
   example 'switches are set as expected' do
-    ARGV.push('--verbose','--test','--foo')
+    ARGV.push('--verbose', '--test', '--foo')
     expect{ @opts = Getopt::Long.getopts('--verbose --test --foo') }.not_to raise_error
     expect(@opts.has_key?('verbose')).to eq(true)
     expect(@opts.has_key?('test')).to eq(true)
@@ -122,7 +122,7 @@ RSpec.describe Getopt::Long do
   end
 
   example 'short switch synonyms work as expected' do
-    ARGV.push('--verbose','--test','--foo')
+    ARGV.push('--verbose', '--test', '--foo')
     expect{ @opts = Getopt::Long.getopts('--verbose --test --foo') }.not_to raise_error
     expect(@opts.has_key?('v')).to eq(true)
     expect(@opts.has_key?('t')).to eq(true)
@@ -146,7 +146,7 @@ RSpec.describe Getopt::Long do
   end
 
   example 'switches with required arguments when present' do
-    ARGV.push('--foo','1','--bar','hello')
+    ARGV.push('--foo', '1', '--bar', 'hello')
 
     expect{
       @opts = Getopt::Long.getopts(
@@ -268,7 +268,7 @@ RSpec.describe Getopt::Long do
   end
 
   example 'multiple similar long switches with no short switches works as expected' do
-    ARGV.push('--to','1','--too','2','--tooo','3')
+    ARGV.push('--to', '1', '--too', '2', '--tooo', '3')
 
     expect{
       @opts = Getopt::Long.getopts(

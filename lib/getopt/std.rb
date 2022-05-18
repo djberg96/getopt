@@ -50,7 +50,7 @@ module Getopt
       regex = /^-(\w)\s*(\w*)/s
 
       while !ARGV.empty? && regex.match(ARGV.first)
-        first, rest = $1, $2
+        first, rest = Regexp.last_match(1), Regexp.last_match(2)
         pos = switches.index(first)
 
         # Switches on the command line must appear among the characters

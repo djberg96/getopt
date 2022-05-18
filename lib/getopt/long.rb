@@ -92,7 +92,7 @@ module Getopt
       ARGV.each_with_index do |opt, index|
         # Allow either -x -v or -xv style for single char args
         if re_short_sq.match(opt)
-          chars = opt.split('')[1..-1].map{ |s| "-#{s}" }
+          chars = opt.chars[1..-1].map{ |s| "-#{s}" }
 
           chars.each_with_index do |char, i|
             unless valid.include?(char)

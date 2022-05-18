@@ -4,7 +4,6 @@ require_relative 'version'
 
 # The Getopt module serves as a namespace only
 module Getopt
-
   REQUIRED  = 0 # Argument is required if switch is provided.
   BOOLEAN   = 1 # Value of argument is true if provided, false otherwise.
   OPTIONAL  = 2 # Argument is optional if switch is provided.
@@ -237,6 +236,5 @@ module Getopt
 
       hash
     end
-
   end
 end

@@ -4,7 +4,6 @@ require_relative 'version'
 
 # The Getopt module serves as a namespace only
 module Getopt
-
   # The Getopt::Std class serves as a base class for the getopts method.
   class Std
     include Getopt::Version

@@ -51,7 +51,7 @@ module Getopt
       syns  = {} # Tracks long and short arguments, or multiple shorts
 
       # If a string is passed, split it and convert it to an array of arrays
-      if switches.first.kind_of?(String)
+      if switches.first.is_a?(String)
         switches = switches.join.split
         switches.map!{ |switch| [switch] }
       end
@@ -61,7 +61,7 @@ module Getopt
         valid.push(switch[0]) # Set valid long switches
 
         # Set type for long switch, default to BOOLEAN.
-        if switch[1].kind_of?(Integer)
+        if switch[1].is_a?(Integer)
           switch[2] = switch[1]
           types[switch[0]] = switch[2]
           switch[1] = switch[0][1..2]

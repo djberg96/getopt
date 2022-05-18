@@ -18,6 +18,7 @@ AllCops:
     - Gemfile
     - examples/*.rb
     - Rakefile
+    - lib/getopt.rb
     - lib/getopt-long.rb
     - lib/getopt-std.rb
 Lint/AssignmentInCondition:

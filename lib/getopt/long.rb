@@ -166,13 +166,13 @@ module Getopt
             raise Error, err
           end
 
-          # If the same option appears more than once, put the values
-          # in array.
+          # If the same option appears more than once, put the values in array.
           if hash[switch]
             hash[switch] = [hash[switch], nextval].flatten
           else
             hash[switch] = nextval
           end
+
           ARGV.delete_at(index + 1)
         end
 

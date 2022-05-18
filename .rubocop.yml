@@ -29,6 +29,10 @@ Lint/EmptyBlock:
 Style/BlockDelimiters: 
   Exclude:
     - spec/*.rb
+Style/CaseLikeIf:
+  Enabled: false
+Style/IfInsideElse:
+  Enabled: false
 Style/MethodCallWithoutArgsParentheses:
   Enabled: false
 Style/NumericPredicate:
@@ -64,7 +68,7 @@ Layout/SpaceBeforeBlockBraces:
 Metrics/AbcSize:
   Enabled: false
 Metrics/BlockLength:
-  IgnoredMethods: ['describe', 'context']
+  Enabled: false
 Metrics/BlockNesting:
   Enabled: false
 Metrics/ClassLength:

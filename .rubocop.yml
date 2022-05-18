@@ -18,6 +18,8 @@ AllCops:
     - Gemfile
     - examples/*.rb
     - Rakefile
+    - lib/getopt-long.rb
+    - lib/getopt-std.rb
 Lint/AssignmentInCondition:
   Enabled: false
 Lint/EmptyBlock:

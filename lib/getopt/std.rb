@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'version'
 
 # The Getopt module serves as a namespace only
 module Getopt
-
   # The Getopt::Std class serves as a base class for the getopts method.
   class Std
     include Getopt::Version
@@ -48,7 +49,7 @@ module Getopt
       regex = /^-(\w)\s*(\w*)/s
 
       while !ARGV.empty? && regex.match(ARGV.first)
-        first, rest = $1, $2
+        first, rest = Regexp.last_match(1), Regexp.last_match(2)
         pos = switches.index(first)
 
         # Switches on the command line must appear among the characters
@@ -71,8 +72,7 @@ module Getopt
             temp_args = args.map{ |e| "-#{e}" }
 
             if temp_args.include?(rest) || temp_args.include?(rest[1..-1])
-              err = "cannot use switch '#{rest}' as argument "
-              err << 'to another switch'
+              err = "cannot use switch '#{rest}' as argument to another switch"
               raise Error, err
             end
 
@@ -88,8 +88,7 @@ module Getopt
             # Do not permit switches that require arguments to be
             # followed immediately by another switch.
             if args.include?(rest) || args.include?(rest[1..-1])
-              err = "cannot use switch '#{rest}' as argument "
-              err += 'to another switch'
+              err = "cannot use switch '#{rest}' as argument to another switch"
               raise Error, err
             end
           end

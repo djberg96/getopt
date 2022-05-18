@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'version'
 
 # The Getopt module serves as a namespace only
 module Getopt
-
   REQUIRED  = 0 # Argument is required if switch is provided.
   BOOLEAN   = 1 # Value of argument is true if provided, false otherwise.
   OPTIONAL  = 2 # Argument is optional if switch is provided.
@@ -49,17 +50,17 @@ module Getopt
       syns  = {} # Tracks long and short arguments, or multiple shorts
 
       # If a string is passed, split it and convert it to an array of arrays
-      if switches.first.kind_of?(String)
+      if switches.first.is_a?(String)
         switches = switches.join.split
         switches.map!{ |switch| [switch] }
       end
 
       # Set our list of valid switches, and proper types for each switch
       switches.each do |switch|
-        valid.push(switch[0])       # Set valid long switches
+        valid.push(switch[0]) # Set valid long switches
 
         # Set type for long switch, default to BOOLEAN.
-        if switch[1].kind_of?(Integer)
+        if switch[1].is_a?(Integer)
           switch[2] = switch[1]
           types[switch[0]] = switch[2]
           switch[1] = switch[0][1..2]
@@ -89,10 +90,9 @@ module Getopt
       re_short_sq = /^(-\w)(\S+?)$/
 
       ARGV.each_with_index do |opt, index|
-
         # Allow either -x -v or -xv style for single char args
         if re_short_sq.match(opt)
-          chars = opt.split('')[1..-1].map{ |s| "-#{s}" }
+          chars = opt.chars[1..-1].map{ |s| "-#{s}" }
 
           chars.each_with_index do |char, i|
             unless valid.include?(char)
@@ -132,9 +132,8 @@ module Getopt
           next
         end
 
-        if match = re_long.match(opt) || match = re_short.match(opt)
-          switch = match.captures.first
-        end
+        match = re_long.match(opt) || re_short.match(opt)
+        switch = match.captures.first if match
 
         if match = re_long_eq.match(opt)
           switch, value = match.captures.compact
@@ -166,13 +165,13 @@ module Getopt
             raise Error, err
           end
 
-          # If the same option appears more than once, put the values
-          # in array.
+          # If the same option appears more than once, put the values in array.
           if hash[switch]
             hash[switch] = [hash[switch], nextval].flatten
           else
             hash[switch] = nextval
           end
+
           ARGV.delete_at(index + 1)
         end
 
@@ -207,6 +206,8 @@ module Getopt
         end
       end
 
+      # rubocop:disable Style/CombinableLoops
+
       # Set synonymous switches to the same value, e.g. if -t is a synonym
       # for --test, and the user passes "--test", then set "-t" to the same
       # value that "--test" was set to.
@@ -235,8 +236,9 @@ module Getopt
         end
       end
 
+      # rubocop:enable Style/CombinableLoops
+
       hash
     end
-
   end
 end

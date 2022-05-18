@@ -1,6 +1,7 @@
 require 'rake'
 require 'rake/clean'
 require 'rspec/core/rake_task'
+require 'rubocop/rake_task'
 
 CLEAN.include("**/*.gem", "**/*.rbc", "**/*.lock")
 
@@ -33,5 +34,7 @@ namespace :spec do
     t.pattern = FileList['spec/*std_spec.rb']
   end
 end
+
+RuboCop::RakeTask.new
 
 task :default => 'spec:all'

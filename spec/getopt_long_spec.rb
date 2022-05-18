@@ -18,6 +18,7 @@ RSpec.describe Getopt::Long do
     @opts = nil
     ARGV.clear
   end
+
   example 'version' do
     expect(Getopt::Long::VERSION).to eq('1.6.0')
     expect(Getopt::Long::VERSION).to be_frozen

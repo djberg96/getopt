@@ -43,6 +43,8 @@ Style/IfUnlessModifier:
   Enabled: false
 Style/Next:
   Enabled: false
+Style/ParallelAssignment:
+  Enabled: false
 Style/RedundantBegin:
   Enabled: false   
 Style/SafeNavigation:

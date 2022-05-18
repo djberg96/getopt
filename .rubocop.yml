@@ -49,6 +49,8 @@ Style/WordArray:
   MinSize: 3
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
 Layout/SpaceInsideHashLiteralBraces:
   Enabled: false
 Layout/CaseIndentation:

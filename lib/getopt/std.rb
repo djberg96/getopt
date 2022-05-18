@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'version'
 
 # The Getopt module serves as a namespace only

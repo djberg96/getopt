@@ -206,6 +206,8 @@ module Getopt
         end
       end
 
+      # rubocop:disable Style/CombinableLoops
+
       # Set synonymous switches to the same value, e.g. if -t is a synonym
       # for --test, and the user passes "--test", then set "-t" to the same
       # value that "--test" was set to.
@@ -233,6 +235,8 @@ module Getopt
           hash[nkey] = value
         end
       end
+
+      # rubocop:enable Style/CombinableLoops
 
       hash
     end

@@ -71,7 +71,7 @@ module Getopt
             # followed immediately by another switch.
             temp_args = args.map{ |e| "-#{e}" }
 
-            if temp_args.include?(rest) || temp_args.include?(rest[1..-1])
+            if temp_args.include?(rest) || temp_args.include?(rest[1..])
               err = "cannot use switch '#{rest}' as argument to another switch"
               raise Error, err
             end
@@ -87,7 +87,7 @@ module Getopt
           else
             # Do not permit switches that require arguments to be
             # followed immediately by another switch.
-            if args.include?(rest) || args.include?(rest[1..-1])
+            if args.include?(rest) || args.include?(rest[1..])
               err = "cannot use switch '#{rest}' as argument to another switch"
               raise Error, err
             end

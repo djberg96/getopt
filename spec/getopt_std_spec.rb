@@ -22,7 +22,7 @@ RSpec.describe Getopt::Std do
   example 'getopts basic functionality' do
     expect(described_class).to respond_to(:getopts)
     expect{ described_class.getopts('ID') }.not_to raise_error
-    expect(described_class.getopts('ID')).to be_kind_of(Hash)
+    expect(described_class.getopts('ID')).to be_a(Hash)
   end
 
   example 'getopts with separated switches' do

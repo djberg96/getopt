@@ -92,7 +92,7 @@ module Getopt
       ARGV.each_with_index do |opt, index|
         # Allow either -x -v or -xv style for single char args
         if re_short_sq.match(opt)
-          chars = opt.chars[1..-1].map{ |s| "-#{s}" }
+          chars = opt.chars[1..].map{ |s| "-#{s}" }
 
           chars.each_with_index do |char, i|
             unless valid.include?(char)
@@ -103,7 +103,7 @@ module Getopt
             if types[char] == REQUIRED
               # Deal with a argument squished up against switch
               if chars[i + 1]
-                arg = chars[i + 1..-1].join.tr('-', '')
+                arg = chars[i + 1..].join.tr('-', '')
                 ARGV.push(char, arg)
                 break
               else
@@ -116,7 +116,7 @@ module Getopt
               end
             elsif types[char] == OPTIONAL
               if chars[i + 1] && !valid.include?(chars[i + 1])
-                arg = chars[i + 1..-1].join.tr('-', '')
+                arg = chars[i + 1..].join.tr('-', '')
                 ARGV.push(char, arg)
                 break
               elsif ARGV[index + 1] && !valid.include?(ARGV[index + 1])

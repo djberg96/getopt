@@ -46,7 +46,7 @@ RSpec.describe Getopt::Long do
       )
     }.not_to raise_error
 
-    expect(described_class.getopts('--test')).to be_kind_of(Hash)
+    expect(described_class.getopts('--test')).to be_a(Hash)
   end
 
   example 'getopts long using equals sign works as expected' do

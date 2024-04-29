@@ -10,6 +10,8 @@ RSpec/InstanceVariable:
   Enabled: false
 RSpec/ExampleLength:
   Max: 15
+RSpec/SpecFilePathFormat:
+  Enabled: false
 
 AllCops:
   NewCops: enable

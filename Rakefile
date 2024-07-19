@@ -37,4 +37,9 @@ end
 
 RuboCop::RakeTask.new
 
+# Clean up afterwards
+Rake::Task[:spec].enhance do
+  Rake::Task[:clean].invoke
+end
+
 task :default => 'spec:all'

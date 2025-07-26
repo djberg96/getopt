@@ -23,6 +23,8 @@ end
 
 namespace :spec do
   RSpec::Core::RakeTask.new(:all) do |t|
+    t.verbose = false
+    t.rspec_opts = '-f documentation'
     t.pattern = FileList['spec/*_spec.rb']
   end
 

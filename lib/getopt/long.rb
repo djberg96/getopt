@@ -8,8 +8,8 @@ module Getopt
   BOOLEAN   = 1 # Value of argument is true if provided, false otherwise.
   OPTIONAL  = 2 # Argument is optional if switch is provided.
   INCREMENT = 3 # Argument is incremented by 1 each time the switch appears.
+  NEGATABLE = 4 # Automatically provide --no-<switch> to set value to false.
 
-  # NEGATABLE = 4 # Automatically provide negative switch equivalent.
   # INTEGER   = 5 # Argument automatically converted to integer if provided.
   # FLOAT     = 6 # Argument automatically converted to float if provided.
 
@@ -48,6 +48,7 @@ module Getopt
       valid = [] # Tracks valid switches
       types = {} # Tracks argument types
       syns  = {} # Tracks long and short arguments, or multiple shorts
+      negs  = {} # Tracks negated switches (maps --no-foo to --foo)
 
       # If a string is passed, split it and convert it to an array of arrays
       if switches.first.is_a?(String)
@@ -81,6 +82,14 @@ module Getopt
         switch[1].each do |char|
           types[char] = switch[2]  # Set type for short switch
           valid.push(char)         # Set valid short switches
+        end
+
+        # For NEGATABLE switches, register the --no- variant
+        if switch[2] == NEGATABLE
+          negated = switch[0].sub(/^--/, '--no-')
+          valid.push(negated)
+          types[negated] = NEGATABLE
+          negs[negated] = switch[0] # Map --no-foo back to --foo
         end
       end
 
@@ -193,6 +202,16 @@ module Getopt
           end
         end
 
+        # For negatable arguments, --foo sets true, --no-foo sets false.
+        # The value is stored under the base switch name (without --no-).
+        if types[switch] == NEGATABLE
+          base_switch = negs[switch] || switch
+          if hash.key?(base_switch)
+            raise Error, 'negatable switch already set'
+          end
+          hash[base_switch] = !negs.key?(switch) # true unless it's a --no- variant
+        end
+
         # For optional argument, there may be an argument.  If so, it
         # cannot be another switch.  If not, it is set to true.
         if types[switch] == OPTIONAL
@@ -215,6 +234,9 @@ module Getopt
       # This allows users to refer to the long or short switch and get
       # the same value
       hash.dup.each do |switch, val|
+        # Skip negated switches - they've already been mapped to base switch
+        next if negs.key?(switch)
+
         if syns.keys.include?(switch)
           syns[switch] = [syns[switch]]
           syns[switch].each do |key|

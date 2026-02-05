@@ -128,8 +128,6 @@ only once.
 
 ## Future Plans
 
-* Add support for negatable options so that you can do "--no-foo", for example.
-
 * Add support for numeric types, so that you don't have to manually convert
   strings to numbers.
 

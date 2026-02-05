@@ -29,6 +29,7 @@ RSpec.describe Getopt::Long do
     expect(Getopt::OPTIONAL).not_to be_nil
     expect(Getopt::REQUIRED).not_to be_nil
     expect(Getopt::INCREMENT).not_to be_nil
+    expect(Getopt::NEGATABLE).not_to be_nil
   end
 
   example 'getopts long basic functionality' do
@@ -288,5 +289,70 @@ RSpec.describe Getopt::Long do
     expect(@opts['to']).to eq('1')
     expect(@opts['too']).to eq('2')
     expect(@opts['tooo']).to eq('3')
+  end
+
+  example 'negatable switch set to true when positive form used' do
+    ARGV.push('--verbose')
+
+    expect{
+      @opts = described_class.getopts(
+        ['--verbose', '-v', Getopt::NEGATABLE]
+      )
+    }.not_to raise_error
+
+    expect(@opts['verbose']).to be(true)
+    expect(@opts['v']).to be(true)
+  end
+
+  example 'negatable switch set to false when --no- form used' do
+    ARGV.push('--no-verbose')
+
+    expect{
+      @opts = described_class.getopts(
+        ['--verbose', '-v', Getopt::NEGATABLE]
+      )
+    }.not_to raise_error
+
+    expect(@opts['verbose']).to be(false)
+    expect(@opts['v']).to be(false)
+  end
+
+  example 'negatable switch works with multiple switches' do
+    ARGV.push('--color', '--no-debug')
+
+    expect{
+      @opts = described_class.getopts(
+        ['--color', '-c', Getopt::NEGATABLE],
+        ['--debug', '-d', Getopt::NEGATABLE]
+      )
+    }.not_to raise_error
+
+    expect(@opts['color']).to be(true)
+    expect(@opts['c']).to be(true)
+    expect(@opts['debug']).to be(false)
+    expect(@opts['d']).to be(false)
+  end
+
+  example 'negatable switch raises error if set more than once' do
+    ARGV.push('--verbose', '--no-verbose')
+
+    expect{
+      @opts = described_class.getopts(
+        ['--verbose', '-v', Getopt::NEGATABLE]
+      )
+    }.to raise_error(Getopt::Long::Error, /negatable switch already set/)
+  end
+
+  example 'negatable switch with hyphenated name works as expected' do
+    ARGV.push('--no-dry-run')
+
+    expect{
+      @opts = described_class.getopts(
+        ['--dry-run', '-n', Getopt::NEGATABLE]
+      )
+    }.not_to raise_error
+
+    expect(@opts['dry-run']).to be(false)
+    expect(@opts['n']).to be(false)
   end
 end

@@ -3,6 +3,6 @@
 module Getopt
   module Version
     # The version of the getopt library
-    VERSION = '1.6.0'
+    VERSION = '1.7.0'
   end
 end

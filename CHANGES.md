@@ -1,8 +1,10 @@
-## 1.6.0 - 13-Feb-2026
+# 1.7.0 - 13-Feb-2026
 * Added the NEGATABLE option so you can do --no-whatever.
-* Switched tests to use rspec.
 * A few warnings were cleaned up, along with rubocop updates.
 * Some administrative stuff, updated Rakefile, Gemfile, etc.
+
+## 1.6.0 - 2-Mar-2021
+* Switched tests to use rspec.
 
 ## 1.5.1 - 23-Mar-2020
 * Properly add a LICENSE file since the Apache-2.0 license requires it.

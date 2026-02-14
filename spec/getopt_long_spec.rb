@@ -20,7 +20,7 @@ RSpec.describe Getopt::Long do
   end
 
   example 'version' do
-    expect(Getopt::Long::VERSION).to eq('1.6.0')
+    expect(Getopt::Long::VERSION).to eq('1.7.0')
     expect(Getopt::Long::VERSION).to be_frozen
   end
 

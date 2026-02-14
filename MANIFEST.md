@@ -14,5 +14,5 @@
 * lib/getopt/long.rb
 * lib/getopt/std.rb
 * lib/getopt/version.rb
-* test/test_getopt_long.rb
-* test/test_getopt_std.rb
+* spec/getopt_long_spec.rb
+* spec/getopt_std_spec.rb

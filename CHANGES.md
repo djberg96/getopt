@@ -1,4 +1,7 @@
-# 1.7.0 - 13-Feb-2026
+# 1.7.1 - 20-May-2026
+* Fixed short option parsing so aliases like `-?` work again. Thanks go to swabianeagle for the spot.
+
+## 1.7.0 - 13-Feb-2026
 * Added the NEGATABLE option so you can do --no-whatever.
 * A few warnings were cleaned up, along with rubocop updates.
 * Some administrative stuff, updated Rakefile, Gemfile, etc.

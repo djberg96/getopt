@@ -94,9 +94,9 @@ module Getopt
       end
 
       re_long     = /^(--\w+[-\w+]*)?$/
-      re_short    = /^(-\w)$/
-      re_long_eq  = /^(--\w+[-\w+]*)?=(.*?)$|(-\w?)=(.*?)$/
-      re_short_sq = /^(-\w)(\S+?)$/
+      re_short    = /^(-[^\s-])$/
+      re_long_eq  = /^(--\w+[-\w+]*)?=(.*?)$|(-[^\s-])=(.*?)$/
+      re_short_sq = /^(-[^\s-])(\S+?)$/
 
       ARGV.each_with_index do |opt, index|
         # Allow either -x -v or -xv style for single char args

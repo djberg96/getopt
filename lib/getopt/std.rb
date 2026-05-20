@@ -46,7 +46,7 @@ module Getopt
     def self.getopts(switches)
       args  = switches.split(/ */)
       hash  = {}
-      regex = /^-(\w)\s*(\w*)/s
+      regex = /^-([^\s-])\s*(\S*)/s
 
       while !ARGV.empty? && regex.match(ARGV.first)
         first, rest = Regexp.last_match(1), Regexp.last_match(2)

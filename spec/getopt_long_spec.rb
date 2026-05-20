@@ -112,6 +112,19 @@ RSpec.describe Getopt::Long do
     expect(@opts['b']).to eq('world')
   end
 
+  example 'getopts long accepts question mark as a short switch' do
+    ARGV.push('-?')
+
+    expect{
+      @opts = described_class.getopts(
+        ['--help', '-?', Getopt::BOOLEAN]
+      )
+    }.not_to raise_error
+
+    expect(@opts['help']).to be(true)
+    expect(@opts['?']).to be(true)
+  end
+
   example 'getopts long increment type works as expected' do
     ARGV.push('-m', '-m')
 

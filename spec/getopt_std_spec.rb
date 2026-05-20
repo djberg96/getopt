@@ -59,6 +59,11 @@ RSpec.describe Getopt::Std do
     expect(described_class.getopts('ID')).to eq({'I' => true, 'D' => true})
   end
 
+  example 'getopts accepts question mark as a switch' do
+    ARGV.push('-?')
+    expect(described_class.getopts('?')).to eq({'?' => true})
+  end
+
   example 'getopts with separated switches and mandatory argument' do
     ARGV.push('-o', 'hello', '-I', '-D')
     expect(described_class.getopts('o:ID')).to eq({'o' => 'hello', 'I' => true, 'D' => true})
